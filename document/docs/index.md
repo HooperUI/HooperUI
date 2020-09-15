@@ -29,6 +29,7 @@ var a = 0
 :smile:
 
 === "C"
+    <div style="color: red">aaaa</div>
 
     ``` c
     #include <stdio.h>
@@ -49,6 +50,8 @@ var a = 0
       return 0;
     }
     ```
+
+
 
 
 | Method      | Description                          |

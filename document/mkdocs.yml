@@ -1,4 +1,4 @@
-site_name: HooperUI
+site_name: HooperUI - Easy and Fast
 repo_url: https://github.com/Hooper93/HooperUI
 repo_name: Hooper93/HooperUI
 edit_uri: blob/master/docs/docs
@@ -44,7 +44,8 @@ extra_css:
 nav:
     - 主页: index.md
     - 快速起步:
-        - 设计指南: guide.md
+        - Hello World: guide/index.md
+        - 安装: guide/install.md
     - 组件:
         - 导航: components/nav.md
     - 自定义主题:
@@ -57,6 +58,11 @@ nav:
 
 extra:
     social:
+        - icon: fontawesome/brands/weixin
+          link: https://weixin.com/
+        - icon: fontawesome/brands/weibo
+          link: https://weibo.cn/
         - icon: fontawesome/brands/twitter
-          link: https://twitter.com/squidfunk
-
+          link: https://twitter.com/
+        - icon: fontawesome/brands/js
+          link: https://amazingjs.cn/
