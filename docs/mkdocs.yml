@@ -1,3 +1,62 @@
 site_name: HooperUI
+repo_url: https://github.com/Hooper93/HooperUI
+repo_name: Hooper93/HooperUI
+edit_uri: blob/master/docs/docs
+site_author: ZhaoHaopeng
+copyright: Copyright &copy; 2020 HooperUI
+
+site_dir: build
 theme:
     name: material
+    language: zh
+    highlightjs: true
+    palette:
+        scheme: preference
+        primary: deep purple
+        accent: indigo
+    features:
+        # When instant loading is activated, clicks on all internal links will be intercepted and dispatched via XHR without fully reloading the page. 
+        - instant
+        # top-level sections are rendered in a menu layer below the header on big screens
+        - tabs
+    hljs_languages:
+        - javascript
+        - html
+        - css
+        - bash
+markdown_extensions:
+    - toc:
+        permalink: true
+    - admonition
+    - pymdownx.details
+    - pymdownx.tabbed
+    - pymdownx.superfences
+    - attr_list
+    - def_list
+    - pymdownx.tasklist:
+        custom_checkbox: true
+        clickable_checkbox: false
+    - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+extra_css:
+    - css/extra.css
+nav:
+    - 主页: index.md
+    - 快速起步:
+        - 设计指南: guide.md
+    - 组件:
+        - 导航: components/nav.md
+    - 自定义主题:
+        - Default: components/nav.md
+    - 版本历史:
+        - Default: components/nav.md
+    - Sketch资源:
+        - Default: components/nav.md
+
+
+extra:
+    social:
+        - icon: fontawesome/brands/twitter
+          link: https://twitter.com/squidfunk
+
