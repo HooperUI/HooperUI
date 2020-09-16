@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{ super() }}
+
+<!-- Content footer -->
+<footer class="hooper-content__footer">
+    <a href="#" title="We love HooperUI">
+        We <span class="twemoji footer-heart">
+            {% include ".icons/octicons/heart-fill-24.svg" %}
+        </span> HooperUI!
+    </a>
+</footer>
+{% endblock %}
