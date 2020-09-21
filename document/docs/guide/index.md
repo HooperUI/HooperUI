@@ -62,5 +62,5 @@ app.mount('#wrapper');
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-恭喜，你可以继续深入的了解 HooperUI 了！ :tada:
+恭喜，你可以继续深入的了解 HooperUI 了！ :partying_face:
 

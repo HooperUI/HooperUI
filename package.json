@@ -4,7 +4,10 @@
     "description": "A new HooperUI UIkit",
     "main": "index.js",
     "scripts": {
-        "test": "karma ."
+        "test": "karma .",
+        "doc:build": "cd document && mkdocs build --clean",
+        "doc:dev": "cd document && mkdocs serve",
+        "build": "node build/build"
     },
     "repository": {
         "type": "git",
@@ -22,16 +25,18 @@
     "devDependencies": {
         "clean-webpack-plugin": "^3.0.0",
         "css-loader": "^3.0.0",
-        "webpack": "^4.35.3",
         "extract-text-webpack-plugin": "^4.0.0-beta.0",
         "file-loader": "^4.0.0",
+        "fs-extra": "^9.0.1",
         "html-webpack-plugin": "^3.2.0",
-        "less": "^3.9.0",
-        "less-loader": "^5.0.0",
+        "mini-css-extract-plugin": "^0.11.2",
+        "node-sass": "^4.14.1",
+        "sass-loader": "^10.0.2",
         "style-loader": "^0.23.1",
-        "uglifyjs-webpack-plugin": "^2.1.3",
+        "typescript": "^4.0.3",
+        "webpack": "^4.35.3",
         "webpack-cli": "^3.3.5",
-        "webpack-merge": "^4.2.1",
-        "webpack-dev-server": "^3.7.2"
+        "webpack-dev-server": "^3.7.2",
+        "webpack-merge": "^4.2.1"
     }
 }

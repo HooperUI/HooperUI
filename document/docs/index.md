@@ -26,7 +26,7 @@ var a = 0
     dsfsdfsdf
     fsfsd
 
-:smile:
+:partying_face:
 
 === "C"
     <div style="color: red">aaaa</div>
