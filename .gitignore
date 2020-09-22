@@ -10,3 +10,5 @@ lib
 .idea
 .vscode
 .npmrc
+dist/.*\-(.){6}\.(js|css|html)
+dist/.*\.html

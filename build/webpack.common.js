@@ -7,71 +7,47 @@
 
 const path = require('path');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
-
-const config = require('./config');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const confs = require('./conf');
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: {
-        app: ['./src/index.js']
+        scripts: ['./src/index.ts']
     },
     output: {
         path: path.resolve(process.cwd(), './dist'),
         publicPath: '/dist/',
-        filename: 'element-ui.common.js',
-        chunkFilename: '[id].js',
+        filename: 'hooperui-[chunkhash:6].js',
+        libraryTarget: 'umd',
         libraryExport: 'default',
-        library: 'ELEMENT',
-        libraryTarget: 'commonjs2'
+        library: 'HooperUI',
+        umdNamedDefine: true
     },
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
-        alias: config.alias,
-        modules: ['node_modules']
+        extensions: ['.ts', '.js', '.json'],
+        alias: confs.alias
     },
-    externals: config.externals,
+    externals: {
+        vue: {
+            root: 'Vue',
+            commonjs: 'vue',
+            commonjs2: 'vue',
+            amd: 'vue'
+        }
+    },
     performance: {
-        hints: false
-    },
-    stats: {
-        children: false
-    },
-    optimization: {
-        minimize: false
+        hints: 'error'
     },
     module: {
         rules: [{
-                test: /\.(jsx?|babel|es6)$/,
-                include: process.cwd(),
-                exclude: config.jsexclude,
-                loader: 'babel-loader'
-            },
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                    compilerOptions: {
-                        preserveWhitespace: false
-                    }
-                }
-            },
-            {
-                test: /\.css$/,
-                loaders: ['style-loader', 'css-loader']
-            },
-            {
-                test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
-                loader: 'url-loader',
-                query: {
-                    limit: 10000,
-                    name: path.posix.join('static', '[name].[hash:7].[ext]')
-                }
+                test: /\.ts$/,
+                loader: 'ts-loader'
             }
         ]
     },
     plugins: [
-        new ProgressBarPlugin(),
-        new VueLoaderPlugin()
+        new CleanWebpackPlugin(),
+        new ProgressBarPlugin()
     ]
 };
