@@ -1,9 +1,9 @@
 /**
- * @file: genDocNavList.js 将模块中的 readme copy 到 doc 目录
+ * @file: genDocNavList.js Move component readme to document dir
  *
  * @since: 2020-09-22
  * @author: Hooper (admin@hooperui.com)
- * @copyright: HooperUI @ Apache Licence 2.0
+ * @copyright: HooperUI @ MIT
  */
 
 const fs = require('fs-extra');
@@ -13,14 +13,16 @@ const confs = require('../conf');
 const {genCompListAndWatch} = require('./genCompList');
 let componentsJsonPath = path.resolve(confs.alias.root, 'components.json');
 let componentsJson = require(componentsJsonPath);
-let componentsPath = path.resolve(confs.alias.components, 'scripts');
+let componentsPath = confs.alias.components;
 let docsPath = confs.alias.docs;
 
 
 /**
- * 生成新的 doc nav
+ * Generate new doc Navlist
+ * !Notice when you add i18n, you should also change the code below.
  *
  * @date 2020-09-22
+ * @param {json} newComps new component list
  */
 function genNavList(newComps) {
     newComps = newComps || componentsJson;
@@ -39,42 +41,48 @@ function genNavList(newComps) {
 
 
 /**
- * 生成新的 doc
+ * Generate a new Doc dir
+ * This will clean doc's dir and rebuild it.
  *
  * @date 2020-09-22
+ * @param {json} newComps new component list
  */
 function genDocs(newComps) {
     newComps = newComps || componentsJson;
-    // let compDocPath = path.resolve(docsPath, 'docs/components');
-    // exec(`cd ${compDocPath} && rm`);
-    Object.keys(newComps).forEach(comp => {
-        let file = path.resolve(componentsPath, comp, `${comp}.md`);
-        if (fs.existsSync(file)) {
-            fs.copyFileSync(file, path.resolve(docsPath, `docs/components/${comp}.md`));
-        }
+    let compDocPath = path.resolve(docsPath, 'docs/components');
+    exec(`cd ${compDocPath} && rm -rf ./*`, () => {
+        Object.keys(newComps).forEach(comp => {
+            let file = path.resolve(componentsPath, comp, `${comp}.md`);
+            if (fs.existsSync(file)) {
+                fs.copyFileSync(file, path.resolve(docsPath, `docs/components/${comp}.md`));
+            }
+        });
+        console.log('Updated docs dir');
     });
-    console.log('Updated docs dir');
 }
 
 
 /**
- * 当 component 变化时，自动进行 doc 相关操作
+ * Auto generate doc&nav
+ * When components changed,
+ * 1. auto generate new components.json
+ * 2. auto generate new doc's navigation list
+ * 3. auto copy or delete new doc.md into documents dir
  *
  * @date 2020-09-22
+ * @param {Function} cb when generated, this function will be execute
  */
 function genNavListAndWatch(cb) {
     genCompListAndWatch(changed => {
         let {
             event,
             filename,
-            newComps,
             oldComps
         } = changed;
         let oldComponents = Object.keys(oldComps || componentsJson);
-        // let newComponents = Object.keys(newComps || {});
         let docPath = path.resolve(docsPath, 'docs/components');
 
-        // 删除一个 component 目录
+        // when delete a component dir
         if (event === 'rename'
             && oldComponents.indexOf(filename) >= 0
             && !fs.existsSync(path.resolve(componentsPath, filename))) {
@@ -84,7 +92,7 @@ function genNavListAndWatch(cb) {
                 console.log(`Deleted ${changed.filename}.md`);
             }
         }
-        // 修改了某个 md 文件
+        // when edit any doc.md file
         else if (event === 'change'
             && /.*\/(.*)\.md$/.test(filename)
             && oldComponents.indexOf(RegExp.$1) >= 0) {
@@ -94,7 +102,9 @@ function genNavListAndWatch(cb) {
                 console.log(`Changed ${filename}`);
             }
         }
-        // 新增了一个 component 目录，下述情况太少见，反正你新增了 md 之后都要编辑，都会触发 change
+        // when you add a new component directory.
+        // this is a very rare situation, and you may going to edit this doc.md right away.
+        // then it will emit change event, so ignore this below.
         // else if (event === 'rename'
         //     && oldComponents.indexOf(filename) >= 0
         //     && newComponents.indexOf(filename) < 0) {
@@ -105,10 +115,12 @@ function genNavListAndWatch(cb) {
         //     }
         //     genNavList(newComps);
         // }
+        cb && cb(changed);
     });
 }
 
 module.exports = {
+    genDocs,
     genNavList,
     genNavListAndWatch
 };

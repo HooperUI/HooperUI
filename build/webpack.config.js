@@ -1,5 +1,5 @@
 /**
- * @file: webpack.common.js 基础打包配置
+ * @file: webpack.config.js Basic webpack config
  * @since: 2020-09-16
  * @author: Hooper (admin@hooperui.com)
  * @copyright: HooperUI @ Apache Licence 2.0
@@ -7,16 +7,17 @@
 
 const path = require('path');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const confs = require('./conf');
 
 module.exports = {
     mode: 'development',
     entry: {
-        scripts: ['./src/index.ts']
+        scripts: [path.resolve(__dirname, '../src/index.ts')]
     },
     output: {
-        path: path.resolve(process.cwd(), './dist'),
+        path: path.resolve(__dirname, '../dist'),
         publicPath: '/dist/',
         filename: 'hooperui-[chunkhash:6].js',
         libraryTarget: 'umd',
@@ -41,13 +42,21 @@ module.exports = {
     },
     module: {
         rules: [{
-                test: /\.ts$/,
-                loader: 'ts-loader'
-            }
-        ]
+            test: /\.ts$/,
+            loader: 'ts-loader'
+        }, {
+            test: /\.pug$/,
+            loader: 'pug-loader'
+        }, {
+            test: /\.sass$/,
+            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        }]
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new ProgressBarPlugin()
+        new ProgressBarPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'hooperui-[chunkhash:6].css'
+        })
     ]
 };

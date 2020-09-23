@@ -1,0 +1,6 @@
+@import '../_styles/base.scss';
+
+.#{$--prefixer}-button {
+    color: $--color-white;
+    background-color: $--color-primary;
+}

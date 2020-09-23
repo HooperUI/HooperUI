@@ -1,8 +1,8 @@
 /**
- * @file: conf.js 打包配置
+ * @file: conf.js Hooperui basic CONFIG
  * @since: 2020-09-22
  * @author: Hooper (admin@hooperui.com)
- * @copyright: HooperUI @ Apache Licence 2.0
+ * @copyright: HooperUI @ MIT
  */
 const path = require('path');
 
