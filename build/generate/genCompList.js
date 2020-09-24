@@ -62,7 +62,7 @@ function genCompList() {
 function genCompListAndWatch(cb) {
     let oldComps = genCompList();
     console.log('I\'m now watching your changes on components...');
-    fs.watch(componentsPath, {
+    const watcher = fs.watch(componentsPath, {
         recursive: true
     }, function (event, filename) {
         if (event === 'rename' && filename) {
@@ -75,7 +75,8 @@ function genCompListAndWatch(cb) {
                     event,
                     filename,
                     newComps,
-                    oldComps
+                    oldComps,
+                    watcher
                 });
                 oldComps = newComps;
             }
@@ -84,10 +85,18 @@ function genCompListAndWatch(cb) {
             cb && cb({
                 event,
                 filename,
-                oldComps
+                oldComps,
+                watcher
             });
         }
     });
+    cb && cb({
+        event: 'init',
+        filename: 'none',
+        oldComps,
+        watcher
+    });
+    return watcher;
 }
 
 

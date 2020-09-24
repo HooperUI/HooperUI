@@ -14,7 +14,7 @@ const confs = require('./conf');
 module.exports = {
     mode: 'development',
     entry: {
-        scripts: [path.resolve(__dirname, '../src/index.ts')]
+        scripts: [path.resolve(__dirname, '../src/components/index.ts')]
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
@@ -48,7 +48,7 @@ module.exports = {
             test: /\.pug$/,
             loader: 'pug-loader'
         }, {
-            test: /\.sass$/,
+            test: /\.scss$/,
             use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
         }]
     },

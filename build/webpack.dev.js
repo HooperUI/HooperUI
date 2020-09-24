@@ -11,9 +11,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // console.log(typeof webpackMerge);
 module.exports = webpackMerge(commonConf, {
     mode: 'development',
-    devtool: 'inline-source-map',
+    devtool: 'cheap-source-map',
     devServer: {
-        contentBase: './dist'
+        contentBase: './dist',
+        clientLogLevel: 'silent'
     },
     module: {
         rules: [{

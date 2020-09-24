@@ -48,7 +48,7 @@ nav:
         - Hi, HooperUI: guide/index.md
         - 安装: guide/install.md
     - 组件:
-{{componentsNavList}} ## ! 这里必须顶到头，否则编译可能会出问题
+{{componentsNavList}} ## !这里必须顶到头，否则编译可能会出问题
     - 自定义主题:
         - Default: components/nav.md
     - 版本历史:

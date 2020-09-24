@@ -12,3 +12,4 @@ lib
 .npmrc
 dist/.*\-(.){6}\.(js|css|html)
 dist/.*\.html
+build/dist

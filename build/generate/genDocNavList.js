@@ -73,7 +73,7 @@ function genDocs(newComps) {
  * @param {Function} cb when generated, this function will be execute
  */
 function genNavListAndWatch(cb) {
-    genCompListAndWatch(changed => {
+    const watcher = genCompListAndWatch(changed => {
         let {
             event,
             filename,
@@ -81,6 +81,12 @@ function genNavListAndWatch(cb) {
         } = changed;
         let oldComponents = Object.keys(oldComps || componentsJson);
         let docPath = path.resolve(docsPath, 'docs/components');
+
+        // when first gen components.json
+        if (event === 'init') {
+            genNavList(oldComps);
+            genDocs(oldComps);
+        }
 
         // when delete a component dir
         if (event === 'rename'
@@ -117,6 +123,7 @@ function genNavListAndWatch(cb) {
         // }
         cb && cb(changed);
     });
+    return watcher;
 }
 
 module.exports = {
