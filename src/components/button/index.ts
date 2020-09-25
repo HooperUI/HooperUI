@@ -5,17 +5,13 @@
  * @copyright: HooperUI @ MIT
  */
 
+import {ref} from 'vue';
 const template = require('./button.pug');
 const style = require('./button.scss');
 
-function greeter(person) {
-    return "Hello,aaa " + person;
-}
-
-let user = "Jane User2";
-
-document.body.innerHTML = greeter(user);
-
 export default {
-    greeter
+    template,
+    setup() {
+        return 
+    }
 }

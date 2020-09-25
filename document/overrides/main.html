@@ -4,11 +4,9 @@
     {{ super() }}
     {% if '/document/dist' not in config.site_dir %}
         <link rel="stylesheet" href="http://127.0.0.1:8001/dist/hooperui.css">
-        <script src="http://127.0.0.1:8001/dist/hooperui.js"></script>
         <meta property="environment" content="dev">
     {% else %}
         <link rel="stylesheet" href="{{ 'assets/hooperui.css'|url }}">
-        <script src="{{ 'assets/hooperui.js'|url }}"></script>
         <meta property="environment" content="prod">
     {% endif %}
 {% endblock %}
@@ -24,5 +22,16 @@
         </span> HooperUI!
     </a>
 </footer>
+{% endblock %}
+
+
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ 'assets/vue.js'|url }}"></script>
+    {% if '/document/dist' not in config.site_dir %}
+        <script src="http://127.0.0.1:8001/dist/hooperui.js"></script>
+    {% else %}
+        <script src="{{ 'assets/hooperui.js'|url }}"></script>
+    {% endif %}
 {% endblock %}
 
