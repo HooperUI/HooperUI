@@ -14,7 +14,9 @@ module.exports = webpackMerge(commonConf, {
     devtool: 'cheap-source-map',
     devServer: {
         contentBase: './dist',
-        clientLogLevel: 'silent'
+        clientLogLevel: 'silent',
+        host: '127.0.0.1',
+        port: '8001'
     },
     module: {
         rules: [{

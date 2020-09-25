@@ -1,8 +1,21 @@
 {% extends "base.html" %}
 
+{% block extrahead %}
+    {{ super() }}
+    {% if '/document/dist' not in config.site_dir %}
+        <link rel="stylesheet" href="http://127.0.0.1:8001/dist/hooperui.css">
+        <script src="http://127.0.0.1:8001/dist/hooperui.js"></script>
+        <meta property="environment" content="dev">
+    {% else %}
+        <link rel="stylesheet" href="{{ 'assets/hooperui.css'|url }}">
+        <script src="{{ 'assets/hooperui.js'|url }}"></script>
+        <meta property="environment" content="prod">
+    {% endif %}
+{% endblock %}
+
+
 {% block content %}
 {{ super() }}
-
 <!-- Content footer -->
 <footer class="hooper-content__footer">
     <a href="#" title="We love HooperUI">
@@ -12,3 +25,4 @@
     </a>
 </footer>
 {% endblock %}
+

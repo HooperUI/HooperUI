@@ -9,7 +9,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const exec = require('child_process').exec;
-const confs = require('../conf');
+const confs = require('../../conf');
 const {genCompListAndWatch} = require('./genCompList');
 let componentsJsonPath = path.resolve(confs.alias.root, 'components.json');
 let componentsJson = require(componentsJsonPath);

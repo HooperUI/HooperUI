@@ -6,7 +6,7 @@
  */
 const fs = require('fs-extra');
 const path = require('path');
-const confs = require('../conf');
+const confs = require('../../conf');
 let componentsJsonPath = path.resolve(confs.alias.root, 'components.json');
 let componentsPath = confs.alias.components;
 

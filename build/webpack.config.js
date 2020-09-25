@@ -9,7 +9,7 @@ const path = require('path');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const confs = require('./conf');
+const confs = require('../conf');
 
 module.exports = {
     mode: 'development',

@@ -5,7 +5,7 @@ edit_uri: blob/master/docs/docs
 site_author: ZhaoHaopeng
 copyright: Copyright &copy; 2020 HooperUI
 
-site_dir: build
+site_dir: dist
 theme:
     name: material
     custom_dir: overrides
@@ -52,11 +52,11 @@ nav:
     - 自定义主题:
         - Default: components/nav.md
     - 版本历史:
-        - Default: components/nav.md
+        - 版本历史: components/nav.md
     - Sketch资源:
-        - Default: components/nav.md
+        - 设计思想: components/nav.md
     - PR指引:
-        - Default: guide/pr.md
+        - 贡献代码: guide/pr.md
 
 
 extra:
