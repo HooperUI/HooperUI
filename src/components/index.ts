@@ -14,3 +14,6 @@ const components = [Button];
 // !DO NOT DELETE the comment above
 
 // todo: install components
+export default {
+    Button
+}

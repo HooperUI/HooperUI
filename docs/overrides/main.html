@@ -2,7 +2,7 @@
 
 {% block extrahead %}
     {{ super() }}
-    {% if '/document/dist' not in config.site_dir %}
+    {% if '/docs/dist' not in config.site_dir %}
         <link rel="stylesheet" href="http://127.0.0.1:8001/dist/hooperui.css">
         <meta property="environment" content="dev">
     {% else %}
@@ -28,7 +28,7 @@
 {% block scripts %}
     {{ super() }}
     <script src="{{ 'assets/vue.js'|url }}"></script>
-    {% if '/document/dist' not in config.site_dir %}
+    {% if '/docs/dist' not in config.site_dir %}
         <script src="http://127.0.0.1:8001/dist/hooperui.js"></script>
     {% else %}
         <script src="{{ 'assets/hooperui.js'|url }}"></script>

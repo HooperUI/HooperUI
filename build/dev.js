@@ -39,7 +39,7 @@ const docGen = genNavListAndWatch();
 // Start mkdoc serve
 spawn('kill', ['-9', '`lsof -i:8000 -t`']);
 const mkdocServer = spawn('mkdocs', ['serve', '--quiet'], {
-    cwd: path.resolve(__dirname, '../document')
+    cwd: path.resolve(__dirname, '../docs')
 });
 mkdocServer.stderr.on('data', data => {
     // console.log(data.toString());

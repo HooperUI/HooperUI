@@ -6,22 +6,33 @@
  */
 const commonConf = require('./webpack.config');
 const webpackMerge = require('webpack-merge');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const path = require('path');
-// console.log(typeof webpackMerge);
+const {VueLoaderPlugin} = require('vue-loader');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const confs = require('../conf');
+
+console.log(Object.keys(require('vue-loader')));
+
 module.exports = webpackMerge(commonConf, {
     mode: 'development',
     devtool: 'cheap-source-map',
     devServer: {
-        contentBase: './dist',
+        contentBase: '.',
         clientLogLevel: 'silent',
         host: '127.0.0.1',
-        port: '8001'
+        port: '8001',
+        hot: true
     },
     module: {
         rules: [{
-            test: /\.sass$/,
-            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+            test: /\.scss$/,
+            use: ['vue-style-loader', 'css-loader', 'sass-loader', {
+                    loader: 'sass-resources-loader',
+                    options: {
+                        resources: path.resolve(confs.alias.components, '_styles/vars.scss')
+                    }
+                }
+            ]
         }]
     },
     performance: {
@@ -31,8 +42,9 @@ module.exports = webpackMerge(commonConf, {
         filename: 'hooperui.js'
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'hooperui.css'
+        new VueLoaderPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.resolve(confs.alias.root, 'demo/index.html')
         })
     ]
 });

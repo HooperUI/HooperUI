@@ -8,16 +8,18 @@
 const path = require('path');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const {
+    CleanWebpackPlugin
+} = require('clean-webpack-plugin');
 const confs = require('../conf');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: {
-        scripts: [path.resolve(__dirname, '../src/components/index.ts')]
+        scripts: [path.resolve(confs.alias.components, 'index.ts')]
     },
     output: {
-        path: path.resolve(__dirname, '../dist'),
+        path: path.resolve(confs.alias.root, 'dist'),
         publicPath: '/dist/',
         filename: 'hooperui-[chunkhash:6].js',
         libraryTarget: 'umd',
@@ -26,7 +28,7 @@ module.exports = {
         umdNamedDefine: true
     },
     resolve: {
-        extensions: ['.ts', '.js', '.json'],
+        extensions: ['.vue', '.ts', '.js', '.json'],
         alias: confs.alias
     },
     externals: {
@@ -42,21 +44,37 @@ module.exports = {
     },
     module: {
         rules: [{
+            test: /\.vue$/,
+            loader: 'vue-loader'
+        }, {
             test: /\.ts$/,
-            loader: 'ts-loader'
+            loader: 'ts-loader',
+            options: {
+                appendTsSuffixTo: [/\.vue$/]
+            }
         }, {
             test: /\.pug$/,
-            loader: 'pug-loader'
+            loader: 'pug-plain-loader'
         }, {
             test: /\.scss$/,
-            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+            use: ['vue-style-loader', 'css-loader', 'sass-loader', {
+                    loader: 'sass-resources-loader',
+                    options: {
+                        resources: path.resolve(confs.alias.components, '_styles/vars.scss')
+                    }
+                }
+            ]
+        }, {
+            test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
+            loader: 'url-loader',
+            query: {
+                limit: 10000,
+                name: path.posix.join('static', '[name].[hash:7].[ext]')
+            }
         }]
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new ProgressBarPlugin(),
-        new MiniCssExtractPlugin({
-            filename: 'hooperui-[chunkhash:6].css'
-        })
+        new ProgressBarPlugin()
     ]
 };

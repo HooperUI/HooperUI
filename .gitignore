@@ -12,4 +12,4 @@ lib
 .npmrc
 dist/.*\-(.){6}\.(js|css|html)
 dist/.*\.html
-document/dist
+docs/dist
