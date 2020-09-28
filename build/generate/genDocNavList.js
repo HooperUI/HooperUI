@@ -27,9 +27,9 @@ let docsPath = confs.alias.docs;
 function genNavList(newComps) {
     newComps = newComps || componentsJson;
 
-    let tpl = `${Object.keys(newComps).map(comp => {
-        return `        - ${comp}: components/${comp}.md`;
-    }).join('\n')}`;
+    let tpl = `${Object.keys(newComps)
+        .map(comp => `        - ${comp}: components/${comp}.md`)
+        .join('\n')}`;
 
     tpl = fs.readFileSync(path.resolve(docsPath, 'mkdocs.tpl'), 'utf8')
         .toString()
@@ -71,6 +71,7 @@ function genDocs(newComps) {
  *
  * @date 2020-09-22
  * @param {Function} cb when generated, this function will be execute
+ * @return {Object} The watcher of component dir
  */
 function genNavListAndWatch(cb) {
     const watcher = genCompListAndWatch(changed => {

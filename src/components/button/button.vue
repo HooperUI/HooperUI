@@ -1,6 +1,4 @@
-<template>
-<div>{{count}}aaafdsffdsfs</div>
-</template>
+<template lang="pug" src="./button.pug"></template>
 <style lang="sass" src="./button.scss"></style>
 <script lang="ts">
 export default {

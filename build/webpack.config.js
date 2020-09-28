@@ -58,12 +58,11 @@ module.exports = {
         }, {
             test: /\.scss$/,
             use: ['vue-style-loader', 'css-loader', 'sass-loader', {
-                    loader: 'sass-resources-loader',
-                    options: {
-                        resources: path.resolve(confs.alias.components, '_styles/vars.scss')
-                    }
+                loader: 'sass-resources-loader',
+                options: {
+                    resources: path.resolve(confs.alias.components, '_styles/vars.scss')
                 }
-            ]
+            }]
         }, {
             test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
             loader: 'url-loader',

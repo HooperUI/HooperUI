@@ -3,12 +3,17 @@
 {% block extrahead %}
     {{ super() }}
     {% if '/docs/dist' not in config.site_dir %}
-        <link rel="stylesheet" href="http://127.0.0.1:8001/dist/hooperui.css">
+        <!-- <link rel="stylesheet" href="http://127.0.0.1:8001/dist/hooperui.css"> -->
         <meta property="environment" content="dev">
     {% else %}
         <link rel="stylesheet" href="{{ 'assets/hooperui.css'|url }}">
         <meta property="environment" content="prod">
     {% endif %}
+    <script>
+    function Demo(cb) {
+        setTimeout(cb, 0);
+    }
+    </script>
 {% endblock %}
 
 
@@ -29,6 +34,8 @@
     {{ super() }}
     <script src="{{ 'assets/vue.js'|url }}"></script>
     {% if '/docs/dist' not in config.site_dir %}
+        <script src="{{ 'assets/develop/ajaxhook.js'|url }}"></script>
+        <script src="{{ 'assets/develop/hmr-pollyfill.js'|url }}"></script>
         <script src="http://127.0.0.1:8001/dist/hooperui.js"></script>
     {% else %}
         <script src="{{ 'assets/hooperui.js'|url }}"></script>

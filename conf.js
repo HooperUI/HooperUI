@@ -10,6 +10,7 @@ const globalPath = {
     components: './src/components',
     directives: './src/directives',
     utils: './src/utils',
+    demo: './demo',
     docs: './docs',
     root: './'
 };

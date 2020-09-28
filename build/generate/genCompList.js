@@ -36,10 +36,12 @@ function genCompList() {
     // write components.json
     fs.writeFileSync(componentsJsonPath, JSON.stringify(compsList, null, 4));
     // write index.ts
-    let tpl = `//codeHolder\n${importList.map(comp => {
-        return `import ${comp.name} from './${comp.dir}';\n`;
-    }).join('')}`;
-    tpl += `const components = [${importList.map(comp => comp.name).join(', ')}];\n//holderEnd\n`;
+    let tpl = `//codeHolder\n${importList
+        .map(comp => `import ${comp.name} from './${comp.dir}';\n`)
+        .join('')}`;
+    tpl += `const components = [${importList
+        .map(comp => comp.name)
+        .join(', ')}];\n//holderEnd\n`;
     tpl = fs.readFileSync(path.resolve(componentsPath, 'index.ts'), 'utf8')
         .toString()
         .replace(/\/\/codeHolder(.|\n)*holderEnd\n/, tpl);
@@ -58,6 +60,7 @@ function genCompList() {
  *
  * @date 2020-09-22
  * @param {Function} cb When change occured, this will be executed
+ * @return {Object} The watcher of component dir
  */
 function genCompListAndWatch(cb) {
     let oldComps = genCompList();

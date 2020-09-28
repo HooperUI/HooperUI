@@ -10,6 +10,6 @@ lib
 .idea
 .vscode
 .npmrc
-dist/.*\-(.){6}\.(js|css|html)
+dist/.*\-(.){6}\.(js|css)
 dist/.*\.html
 docs/dist

@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <% for(var i=0; i < htmlWebpackPlugin.files.css.length; i++) {%>
+        <link type="text/css" rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[i] %>">
+    <% } %>
 </head>
-
 <body>
     <div id="app"></div>
-    <script src="https://unpkg.com/vue@next"></script>
-    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script> -->
+    <script src="/dist/assets/vue.js"></script>
+    <% for(var i=0; i < htmlWebpackPlugin.files.js.length; i++) {%>
+        <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[i] %>"></script>
+    <% } %>
+    <script src="/dist/demo.js"></script>
 </body>
 </html>
