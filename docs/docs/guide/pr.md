@@ -42,18 +42,24 @@ npm install
 HooperUI 因为目前拓展的功能不是很多，所以目前的代码结构比较规整，开发环境的配置也相对比较简单，可能后面会针对不同用途定制专门的 npm scripts，但是现在，对于开发和构建，你只需要了解下面几个命令就行了：
 
 ```bash
-# 开始开发
+# 开始开发（完全构建并在 doc 模式开发）
 npm run dev
+# 开始开发（完全构建并在 demo 模式开发）
+npm run dev:demo
 # 开始构建
 npm run build
 # 开始自动化测试
 npm run test
 ```
 
-当运行 dev 脚本时，会进行下方自动化操作：
+当运行 `npm run dev` 脚本时，会进行下方自动化操作：
 
 1. 在 127.0.0.1:8001 启动 webpack-dev-serve
 2. 在 127.0.0.1:8000 启动 mkdocs serve
 3. 启动监听，当 src/components 目录有代码变动 或 目录变动时，会自动更新到上述两个服务，并 livereload
 
-
+!!! faq "Dev 的两种模式有何区别？"
+    * Demo 模式：其实就是唤起了一个简单的 webpack-dev-server，你需要到 `./demo/demo.js` 中使用你正在编写的组件，然后写文档，写测试用例。这里只体现你自己的组件内容。开发地址为：http://127.0.0.1:8001/dist/。
+    * Doc 模式：在上述模式的基础上，增加了实时监控 components 变化，实时生成新的 document 文档等功能，因此可以一边测试组件表现，一边编写文档。开发地址为：http://127.0.0.1:8000/。**推荐使用该方式**
+    * Demo 模式不会启动 doc 的两个 watcher 进行编译和拷贝，比较节省内存，如果你发现 `npm run dev` 之后内存消耗较大，可以使用此模式。
+    * 两个模式都会启用 webpack 的 HMR 功能，你不会在 dist 目录看到编译产出。
