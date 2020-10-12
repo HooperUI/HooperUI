@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A new HooperUI UIkit",
   "main": "index.js",
+  "typings": "typings/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "test": "karma .",
@@ -57,5 +58,8 @@
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {
+    "@types/vue": "^2.0.0"
   }
 }
