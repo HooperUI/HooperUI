@@ -1,4 +1,10 @@
 {
+    "files": [
+        "demo/*",
+        "src/**",
+        "test/**",
+        "typings/**"
+    ],
     "eslint": {
         "rules": {
             "fecs-use-method-definition": "0",

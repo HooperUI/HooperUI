@@ -10,24 +10,24 @@ const Counter = {
     data() {
         return {
             counter: 0
-        }
+        };
     }
-}
+};
 
-let app = Vue.createApp(Counter)
+let app = window.Vue.createApp(Counter);
 
 app.component('button-counter', {
     data() {
-      return {
-        count: 0
-      }
+        return {
+            count: 0
+        };
     },
     template: `
       <button @click="count++">
         You clicked me {{ count }} times.
       </button>`
-  })
+});
 
-app.use(HooperUI.Button)
-app.mount('#app')
-console.log(app)
+app.use(window.HooperUI.Button);
+app.mount('#app');
+// console.log(app)

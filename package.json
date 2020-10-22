@@ -1,61 +1,69 @@
 {
-  "name": "hooperui",
-  "version": "0.0.1",
-  "description": "A new HooperUI UIkit",
-  "main": "index.js",
-  "sideEffects": false,
-  "scripts": {
-    "test": "karma .",
-    "doc:build": "cd docs && mkdocs build --clean",
-    "doc:dev": "cd docs && mkdocs serve",
-    "dev": "node build/dev",
-    "dev:demo": "npx webpack-dev-server --config ./build/webpack.dev.js --open-page 'dist/'",
-    "build": "node build/build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Hooper93/HooperUI.git"
-  },
-  "keywords": [
-    "HooperUI"
-  ],
-  "author": "Hooper",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Hooper93/HooperUI/issues"
-  },
-  "homepage": "https://github.com/Hooper93/HooperUI#readme",
-  "peerDependencies": {
-    "vue": "^3.0.0"
-  },
-  "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.1.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^6.1.1",
-    "css-loader": "^3.0.0",
-    "dart-sass": "^1.25.0",
-    "extract-loader": "^5.1.0",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "file-loader": "^4.3.0",
-    "fs-extra": "^9.0.1",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.11.2",
-    "progress-bar-webpack-plugin": "^2.1.0",
-    "pug": "^3.0.0",
-    "pug-plain-loader": "^1.0.0",
-    "sass": "^1.26.11",
-    "sass-loader": "^10.0.2",
-    "sass-resources-loader": "^2.1.1",
-    "ts-loader": "^8.0.4",
-    "typescript": "^4.0.3",
-    "vue-loader": "^16.0.0-beta.8",
-    "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.6.12",
-    "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.5",
-    "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^4.2.1"
-  }
+    "name": "hooperui",
+    "version": "0.0.1",
+    "description": "A new HooperUI UIkit",
+    "main": "index.js",
+    "sideEffects": false,
+    "scripts": {
+        "lint": "fecs --rule --level='2'",
+        "test": "karma .",
+        "pretest": "npm run lint",
+        "doc:build": "cd docs && mkdocs build --clean",
+        "doc:dev": "cd docs && mkdocs serve",
+        "dev": "node build/dev",
+        "dev:demo": "npx webpack-dev-server --config ./build/webpack.dev.js --open-page 'dist/'",
+        "build": "node build/build",
+        "prepublish": "npm build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Hooper93/HooperUI.git"
+    },
+    "keywords": [
+        "HooperUI"
+    ],
+    "author": "Hooper",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Hooper93/HooperUI/issues"
+    },
+    "homepage": "https://github.com/Hooper93/HooperUI#readme",
+    "peerDependencies": {
+        "vue": "^3.0.0"
+    },
+    "devDependencies": {
+        "@vue/compiler-sfc": "^3.0.0",
+        "babel-core": "^6.26.3",
+        "babel-loader": "^8.1.0",
+        "clean-webpack-plugin": "^3.0.0",
+        "copy-webpack-plugin": "^6.1.1",
+        "css-loader": "^3.0.0",
+        "dart-sass": "^1.25.0",
+        "eslint-plugin-html": "^6.1.0",
+        "extract-loader": "^5.1.0",
+        "extract-text-webpack-plugin": "^4.0.0-beta.0",
+        "file-loader": "^4.3.0",
+        "fs-extra": "^9.0.1",
+        "html-webpack-plugin": "^3.2.0",
+        "mini-css-extract-plugin": "^0.11.2",
+        "progress-bar-webpack-plugin": "^2.1.0",
+        "pug": "^3.0.0",
+        "pug-plain-loader": "^1.0.0",
+        "sass": "^1.26.11",
+        "sass-loader": "^10.0.2",
+        "sass-resources-loader": "^2.1.1",
+        "ts-loader": "^8.0.4",
+        "typescript": "^4.0.3",
+        "vue-loader": "^16.0.0-beta.8",
+        "vue-style-loader": "^4.1.2",
+        "vue-template-compiler": "^2.6.12",
+        "webpack": "^4.35.3",
+        "webpack-cli": "^3.3.5",
+        "webpack-dev-server": "^3.11.0",
+        "webpack-merge": "^4.2.1"
+    },
+    "dependencies": {
+        "@types/vue": "^2.0.0",
+        "vue": "^3.0.2"
+    }
 }

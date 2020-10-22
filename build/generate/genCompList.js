@@ -36,15 +36,15 @@ function genCompList() {
     // write components.json
     fs.writeFileSync(componentsJsonPath, JSON.stringify(compsList, null, 4));
     // write index.ts
-    let tpl = `//codeHolder\n${importList
-        .map(comp => `import ${comp.name} from './${comp.dir}';\n`)
+    let tpl = `// codeHolder\n${importList
+        .map(comp => `import ${comp.name} from './${comp.dir}/index.vue';\n`)
         .join('')}`;
-    tpl += `const components = [${importList
+    tpl += `\nconst components = [${importList
         .map(comp => comp.name)
-        .join(', ')}];\n//holderEnd\n`;
+        .join(', ')}];\n// holderEnd\n`;
     tpl = fs.readFileSync(path.resolve(componentsPath, 'index.ts'), 'utf8')
         .toString()
-        .replace(/\/\/codeHolder(.|\n)*holderEnd\n/, tpl);
+        .replace(/\/\/\scodeHolder(.|\n)*holderEnd\n/, tpl);
     fs.writeFileSync(path.resolve(componentsPath, 'index.ts'), tpl);
 
     console.log(`Generated new components.json, length is ${Object.keys(compsList).length}`);

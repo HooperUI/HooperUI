@@ -7,13 +7,15 @@
  */
 
 // !DO NOT DELETE the comment below
-//codeHolder
-import Button from './button';
+// codeHolder
+import Button from './button/index.vue';
+
 const components = [Button];
-//holderEnd
+// holderEnd
 // !DO NOT DELETE the comment above
 
 // todo: install components
 export default {
-    Button
-}
+    Button,
+    components
+};
