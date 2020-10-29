@@ -28,7 +28,7 @@ module.exports = {
         umdNamedDefine: true
     },
     resolve: {
-        extensions: ['.vue', '.ts', '.js', '.json'],
+        extensions: ['.js', '.vue', '.ts', '.json'],
         alias: confs.alias
     },
     externals: {
