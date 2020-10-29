@@ -15,7 +15,7 @@ const globalPath = {
     root: './'
 };
 
-const alias = (function () {
+const alias = (function() {
     let alias = {};
     for (let [key, val] of Object.entries(globalPath)) {
         alias[key] = path.resolve(__dirname, val);

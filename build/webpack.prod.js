@@ -11,6 +11,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
+const {
+    VueLoaderPlugin
+} = require('vue-loader');
 const confs = require('../conf');
 
 module.exports = {
@@ -74,6 +77,7 @@ module.exports = {
         }]
     },
     plugins: [
+        new VueLoaderPlugin(),
         new CleanWebpackPlugin(),
         new ProgressBarPlugin(),
         new MiniCssExtractPlugin({
