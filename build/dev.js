@@ -22,7 +22,7 @@ const devServer = spawn('webpack-dev-server', ['--config', 'webpack.dev.js', '--
     cwd: __dirname
 });
 devServer.stdout.on('data', data => {
-    let result = data.toString().match(/\:\s(.*(\n|\r))/);
+    const result = data.toString().match(/\:\s(.*(\n|\r))/);
     result && showLog(`devServer ${result[1]}`, 'build');
 });
 devServer.stderr.on('data', data => {
@@ -43,7 +43,7 @@ const mkdocServer = spawn('mkdocs', ['serve', '--quiet'], {
 });
 mkdocServer.stderr.on('data', data => {
     // console.log(data.toString());
-    let result = data.toString().match(/(((INFO|WORNING)\s+\-.*\n)|(\[Errno.*\n))/);
+    const result = data.toString().match(/(((INFO|WORNING)\s+\-.*\n)|(\[Errno.*\n))/);
     if (result && !/Browser\sConnected:/.test(result)) {
         result && showLog(`mkdocServer ${result[1]}`, result[1].match(/(\[Errno.*\n)/) ? 'error' : 'info');
     }
@@ -53,7 +53,7 @@ mkdocServer.on('close', () => {
 });
 
 
-process.on('SIGINT', function () {
+process.on('SIGINT', function() {
     docGen.close();
     spawn('kill', [mkdocServer.pid, devServer.pid]);
     console.log(''); // This is must.

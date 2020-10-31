@@ -7,9 +7,8 @@
 const fs = require('fs-extra');
 const path = require('path');
 const confs = require('../../conf');
-let componentsJsonPath = path.resolve(confs.alias.root, 'components.json');
-let componentsPath = confs.alias.components;
-
+const componentsJsonPath = path.resolve(confs.alias.root, 'components.json');
+const componentsPath = confs.alias.components;
 
 
 /**
@@ -19,9 +18,9 @@ let componentsPath = confs.alias.components;
  * @return {json} The new components.json file
  */
 function genCompList() {
-    let allComps = fs.readdirSync(componentsPath);
-    let compsList = {};
-    let importList = [];
+    const allComps = fs.readdirSync(componentsPath);
+    const compsList = {};
+    const importList = [];
     allComps.forEach(comp => {
         if (!/\_|\./.test(comp)) {
             // setup components.json
@@ -67,13 +66,13 @@ function genCompListAndWatch(cb) {
     console.log('I\'m now watching your changes on components...');
     const watcher = fs.watch(componentsPath, {
         recursive: true
-    }, function (event, filename) {
+    }, function(event, filename) {
         if (event === 'rename' && filename) {
             // when delete a component dir
             if (!fs.existsSync(path.resolve(componentsPath, filename))
                 // or you add a new component dir
                 || Object.keys(oldComps).indexOf(filename) === -1) {
-                let newComps = genCompList();
+                const newComps = genCompList();
                 cb && cb({
                     event,
                     filename,

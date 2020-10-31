@@ -20,9 +20,9 @@ module.exports = {
         'comma-dangle': ['error', 'never'],
         indent: ['error', 4],
         'quote-props': ['error', 'as-needed'],
-        'require-jsdoc': ['error', {
+        'require-jsdoc': ['warn', {
             require: {
-                FunctionDeclaration: false,
+                FunctionDeclaration: true,
                 MethodDefinition: false,
                 ClassDeclaration: false,
                 ArrowFunctionExpression: false,
@@ -30,6 +30,12 @@ module.exports = {
             }
         }],
         'arrow-parens': ['error', 'as-needed'],
-        'operator-linebreak': ['error', 'before']
+        'max-len': ['error', {
+            code: 120
+        }],
+        'operator-linebreak': ['error', 'before'],
+        'brace-style': ['error', 'stroustrup', {
+            allowSingleLine: true
+        }]
     }
 };

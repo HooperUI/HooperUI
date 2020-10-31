@@ -4,7 +4,7 @@
  * @author: Hooper (admin@hooperui.com)
  * @copyright: HooperUI @ MIT
  */
-const webpack = require('webpack');
+// const webpack = require('webpack');
 const {spawn} = require('child_process');
 
 // Set process title

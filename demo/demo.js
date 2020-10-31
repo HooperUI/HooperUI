@@ -14,9 +14,9 @@ const Counter = {
     }
 };
 
-let app = window.Vue.createApp(Counter);
+const app = window.Vue.createApp(Counter);
 
-app.component('button-counter', {
+app.component('ButtonCounter', {
     data() {
         return {
             count: 0

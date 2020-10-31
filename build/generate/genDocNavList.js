@@ -11,10 +11,10 @@ const path = require('path');
 const exec = require('child_process').exec;
 const confs = require('../../conf');
 const {genCompListAndWatch} = require('./genCompList');
-let componentsJsonPath = path.resolve(confs.alias.root, 'components.json');
-let componentsJson = require(componentsJsonPath);
-let componentsPath = confs.alias.components;
-let docsPath = confs.alias.docs;
+const componentsJsonPath = path.resolve(confs.alias.root, 'components.json');
+const componentsJson = require(componentsJsonPath);
+const componentsPath = confs.alias.components;
+const docsPath = confs.alias.docs;
 
 
 /**
@@ -49,10 +49,10 @@ function genNavList(newComps) {
  */
 function genDocs(newComps) {
     newComps = newComps || componentsJson;
-    let compDocPath = path.resolve(docsPath, 'docs/components');
+    const compDocPath = path.resolve(docsPath, 'docs/components');
     exec(`cd ${compDocPath} && rm -rf ./*`, () => {
         Object.keys(newComps).forEach(comp => {
-            let file = path.resolve(componentsPath, comp, `${comp}.md`);
+            const file = path.resolve(componentsPath, comp, `${comp}.md`);
             if (fs.existsSync(file)) {
                 fs.copyFileSync(file, path.resolve(docsPath, `docs/components/${comp}.md`));
             }
@@ -75,13 +75,13 @@ function genDocs(newComps) {
  */
 function genNavListAndWatch(cb) {
     const watcher = genCompListAndWatch(changed => {
-        let {
+        const {
             event,
             filename,
             oldComps
         } = changed;
-        let oldComponents = Object.keys(oldComps || componentsJson);
-        let docPath = path.resolve(docsPath, 'docs/components');
+        const oldComponents = Object.keys(oldComps || componentsJson);
+        const docPath = path.resolve(docsPath, 'docs/components');
 
         // when first gen components.json
         if (event === 'init') {
@@ -93,7 +93,7 @@ function genNavListAndWatch(cb) {
         if (event === 'rename'
             && oldComponents.indexOf(filename) >= 0
             && !fs.existsSync(path.resolve(componentsPath, filename))) {
-            let file = path.resolve(docPath, `${filename}.md`);
+            const file = path.resolve(docPath, `${filename}.md`);
             if (fs.existsSync(file)) {
                 fs.unlinkSync(file);
                 console.log(`Deleted ${changed.filename}.md`);
@@ -103,7 +103,7 @@ function genNavListAndWatch(cb) {
         else if (event === 'change'
             && /.*\/(.*)\.md$/.test(filename)
             && oldComponents.indexOf(RegExp.$1) >= 0) {
-            let file = path.resolve(componentsPath, RegExp.$1, `${RegExp.$1}.md`);
+            const file = path.resolve(componentsPath, RegExp.$1, `${RegExp.$1}.md`);
             if (fs.existsSync(file)) {
                 fs.copyFileSync(file, path.resolve(docPath, `${RegExp.$1}.md`));
                 console.log(`Changed ${filename}`);

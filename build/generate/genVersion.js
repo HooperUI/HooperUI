@@ -7,6 +7,10 @@
 const fs = require('fs-extra');
 const path = require('path');
 
+/**
+ * Generate a new version for HooperUI form package.json
+ * @date 2020-10-31
+ */
 function genVersion() {
     const {
         version
@@ -15,7 +19,7 @@ function genVersion() {
     fs.writeFileSync(
         path.join(__dirname, '../../src/utils/version.ts'),
         `export default '${version}';`,
-        'utf8',
+        'utf8'
     );
 
     console.log('Changed version.ts from package.json');

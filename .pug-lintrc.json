@@ -1,0 +1,5 @@
+{
+    "disallowClassAttributeWithStaticValue": true,
+    "disallowClassLiteralsBeforeIdLiterals": true,
+    "disallowMultipleLineBreaks": true
+}
