@@ -5,11 +5,11 @@
  * @copyright: HooperUI @ MIT
  */
 
-import HooButton from './button.vue';
+import HooButton from './src/button.vue';
 
-// /* istanbul ignore next */
-// HooButton.install = function (app) {
-//     app.component('HooButton', HooButton);
-// };
+/* istanbul ignore next */
+HooButton.install = function (app) {
+    app.component('HooButton', HooButton);
+};
 export default HooButton;
 

@@ -8,7 +8,7 @@
 
 // !DO NOT DELETE the comment below
 // codeHolder
-import Button from './button/index.vue';
+import Button from './button';
 
 const components = [Button];
 // holderEnd

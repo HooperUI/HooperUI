@@ -36,7 +36,7 @@ function genCompList() {
     fs.writeFileSync(componentsJsonPath, JSON.stringify(compsList, null, 4));
     // write index.ts
     let tpl = `// codeHolder\n${importList
-        .map(comp => `import ${comp.name} from './${comp.dir}/index.vue';\n`)
+        .map(comp => `import ${comp.name} from './${comp.dir}]';\n`)
         .join('')}`;
     tpl += `\nconst components = [${importList
         .map(comp => comp.name)

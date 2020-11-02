@@ -1,6 +1,7 @@
 <template lang="pug" src="./button.pug"></template>
 <script lang="ts">
-export default {
+import {defineComponent, Component} from 'vue';
+const alert:Component = defineComponent({
     data() {
         return {
             count: 100,
@@ -12,7 +13,8 @@ export default {
             this.count++;
         }, 1000);
     }
-};
-console.log(undefined, 12);
+});
+
+export default alert;
 </script>
 <style lang="sass" src="./button.scss"></style>

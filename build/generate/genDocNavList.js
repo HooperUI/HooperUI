@@ -52,7 +52,7 @@ function genDocs(newComps) {
     const compDocPath = path.resolve(docsPath, 'docs/components');
     exec(`cd ${compDocPath} && rm -rf ./*`, () => {
         Object.keys(newComps).forEach(comp => {
-            const file = path.resolve(componentsPath, comp, `${comp}.md`);
+            const file = path.resolve(componentsPath, comp, `docs/${comp}.md`);
             if (fs.existsSync(file)) {
                 fs.copyFileSync(file, path.resolve(docsPath, `docs/components/${comp}.md`));
             }
