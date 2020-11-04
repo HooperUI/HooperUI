@@ -34,7 +34,7 @@ module.exports = webpackMerge(commonConf, {
             use: ['vue-style-loader', 'css-loader', 'sass-loader', {
                 loader: 'sass-resources-loader',
                 options: {
-                    resources: path.resolve(confs.alias.components, '_styles/vars.scss')
+                    resources: path.resolve(confs.alias.styles, 'vars.scss')
                 }
             }]
         }]

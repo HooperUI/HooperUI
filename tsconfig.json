@@ -1,12 +1,19 @@
 {
     "compilerOptions": {
+        "baseUrl": "./",
         "target": "esnext",
         "module": "esnext",
         // this enables stricter inference for data properties on `this`
         "strict": true,
         "jsx": "preserve",
         "moduleResolution": "node",
-        "declaration": true
+        // this enables to built .d.ts file
+        "declaration": true,
+        "paths": {
+            "root/*": ["./src/*"],
+            "utils/*": ["./src/utils/*"],
+            "styles/*": ["./src/styles/*"]
+        }
     },
     "include": [
         "./src/**/*"

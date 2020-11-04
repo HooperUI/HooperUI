@@ -8,6 +8,7 @@
             {
                 "except": ["block"]
             }
-        ]
+        ],
+        "color-hex-case": "upper"
     }
 }

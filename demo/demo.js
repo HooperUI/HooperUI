@@ -6,7 +6,7 @@
  */
 
 const Counter = {
-    template: '{{counter}}<button-counter></button-counter><hoo-button></hoo-button>',
+    template: '{{counter}}<button-counter></button-counter><h-button></h-button>',
     data() {
         return {
             counter: 0
