@@ -7,7 +7,7 @@
 
 const path = require('path');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
@@ -60,7 +60,7 @@ module.exports = {
             use: ['vue-style-loader', 'css-loader', 'sass-loader', {
                 loader: 'sass-resources-loader',
                 options: {
-                    resources: path.resolve(confs.alias.components, '_styles/vars.scss')
+                    resources: path.resolve(confs.alias.styles, 'vars.scss')
                 }
             }]
         }, {
