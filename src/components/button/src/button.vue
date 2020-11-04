@@ -2,6 +2,7 @@
 <script lang="ts">
 import {defineComponent, Component} from 'vue';
 const alert:Component = defineComponent({
+    name: 'HButton',
     data() {
         return {
             count: 100,

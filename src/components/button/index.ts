@@ -5,11 +5,9 @@
  * @copyright: HooperUI @ MIT
  */
 
-import HooButton from './src/button.vue';
-
+import HButton from './src/button.vue';
+import {wrapInstall} from 'utils/util';
 /* istanbul ignore next */
-HooButton.install = function (app) {
-    app.component('HooButton', HooButton);
-};
-export default HooButton;
+wrapInstall(HButton);
+export default HButton;
 
