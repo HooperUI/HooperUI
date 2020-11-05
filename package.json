@@ -65,5 +65,8 @@
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {
+    "cypress": "^5.5.0"
   }
 }
