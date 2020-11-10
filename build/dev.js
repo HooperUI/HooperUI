@@ -9,7 +9,7 @@
  */
 const path = require('path');
 const {spawn} = require('child_process');
-const {genNavListAndWatch} = require('./generate/genDocNavList');
+const {genNavListAndWatch} = require('./generator/genDocNavList');
 const {showLog} = require('./utils');
 
 // Set process title

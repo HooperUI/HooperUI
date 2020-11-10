@@ -10,10 +10,9 @@ const {
 } = require('vue-loader');
 const path = require('path');
 const confs = require('../conf');
-
 module.exports = {
     mode: 'development',
-    devtool: '#inline-source-map',
+    devtool: 'inline-source-map',
     resolve: {
         extensions: ['.js', '.vue', '.ts', '.json'],
         alias: confs.alias
@@ -25,6 +24,7 @@ module.exports = {
             loader: 'vue-loader'
         }, {
             test: /\.ts$/,
+            exclude: /(node_modules|bower_components)/,
             use: [{
                 loader: 'istanbul-instrumenter-loader',
                 options: {

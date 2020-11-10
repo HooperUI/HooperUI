@@ -1,18 +1,18 @@
 const path = require('path');
-const webpackConfig = require('./build/webpack.test');
+const webpackConfig = require('../../build/webpack.test');
 module.exports = function(config) {
     const karmaConf = {
-        basePath: './',
+        basePath: '../../',
         frameworks: ['mocha', 'chai'],
         files: [
             // './src/components/index.ts',
             // './tests/unit/specs/**/*.spec.js'
-            './tests/unit/index.js'
+            './tests/unit-karma/index.js'
         ],
         preprocessors: {
             // './src/components/index.ts': ['coverage', 'webpack', 'sourcemap'],
             // './tests/unit/specs/**/*.spec.js': ['webpack', 'sourcemap']
-            './tests/unit/index.js': ['webpack', 'sourcemap']
+            './tests/unit-karma/index.js': ['webpack', 'sourcemap']
         },
         webpack: webpackConfig,
         webpackMiddleware: {
@@ -44,7 +44,7 @@ module.exports = function(config) {
         coverageIstanbulReporter: {
             // html info & console
             reports: ['html', 'lcovonly', 'text-summary'],
-            dir: path.resolve('./tests/unit/coverage/'),
+            dir: path.resolve('./tests/unit-karma/coverage/'),
             fixWebpackSourcePaths: true,
             'report-config': {
                 html: {

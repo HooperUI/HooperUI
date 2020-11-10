@@ -14,4 +14,4 @@ lib
 dist/.*\-(.){6}\.(js|css)
 dist/.*\.html
 docs/dist
-tests/(unit|e2e)/coverage
+tests/coverage

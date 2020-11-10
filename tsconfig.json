@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "baseUrl": "./",
-        "target": "esnext",
+        "target": "es5",
         "module": "esnext",
         // this enables stricter inference for data properties on `this`
         "strict": true,
@@ -11,6 +11,7 @@
         "declaration": true,
         "paths": {
             "root/*": ["./src/*"],
+            "components/*": ["./src/components/*"],
             "utils/*": ["./src/utils/*"],
             "styles/*": ["./src/styles/*"]
         }

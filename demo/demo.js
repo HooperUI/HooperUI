@@ -30,4 +30,4 @@ app.component('ButtonCounter', {
 
 app.use(window.HooperUI.Button);
 app.mount('#app');
-// console.log(app)
+console.log(app);

@@ -45,19 +45,24 @@ jobs:
             - run: CHROME_BIN=`which google-chrome` npm run test:coverage
             - run: echo "Unit test checked."
             - codecov/upload
+    e2e-test:
+        <<: *defaults
+        steps:
+            - run: echo "I'm checking your e2e"
+            - run: echo "checked."
 
 workflows:
-    unit-test:
+    normal-commit-testing:
         jobs:
             - install:
                 context:
                     - docker_user
-            # - lint-check:
-            #     requires:
-            #         - install-chrome
+            - lint-check:
+                requires:
+                    - install
             - unit-test:
                 requires:
                     - install
-            # - node/test:
-            #     requires:
-            #         - install
+            - e2e-test:
+                requires:
+                    - install
