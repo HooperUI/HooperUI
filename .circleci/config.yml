@@ -1,0 +1,61 @@
+version: 2.1
+orbs:
+    browser-tools: circleci/browser-tools@1.1.0
+    node: circleci/node@4.1.0
+
+defaults: &defaults
+    working_directory: ~/project/HooperUI
+    docker:
+        - image: 'circleci/node:13.12-browsers'
+          auth:
+            username: $docker_user  # can specify string literal values
+            password: $docker_pass  # or project environment variable reference
+
+jobs:
+    install:
+        <<: *defaults 
+        steps:
+            - checkout
+            - browser-tools/install-chrome
+            - browser-tools/install-chromedriver
+            - run:
+                command: |
+                    google-chrome --version
+                    chromedriver --version
+                    which google-chrome
+                name: Check broswer installed
+            - node/install-packages:
+                cache-path: ~/project/node_modules
+                override-ci-command: npm install
+            - persist_to_workspace:
+                root: ~/project
+                paths:
+                    - HooperUI
+    lint-check:
+        <<: *defaults
+        steps:
+            - run: echo "I'm checking your lint"
+            - run: echo "checked."
+    unit-test:
+        <<: *defaults
+        steps:
+            - attach_workspace:
+                at: ~/project
+            - run: CHROME_BIN=`which google-chrome` npm run test
+            - run: echo "checked."
+
+workflows:
+    unit-test:
+        jobs:
+            - install:
+                context:
+                    - docker_user
+            # - lint-check:
+            #     requires:
+            #         - install-chrome
+            - unit-test:
+                requires:
+                    - install
+            # - node/test:
+            #     requires:
+            #         - install
