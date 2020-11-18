@@ -8,7 +8,7 @@
 import {
     createApp as createVueApp
 } from 'vue';
-import {mount} from '@vue/test-utils';
+import {createWrapper} from '@vue/test-utils';
 import HooperUI from 'components/index';
 
 /**
@@ -55,12 +55,12 @@ export const createApp = function(Comp = {
         needMount = propsData;
         propsData = {};
     }
-    return needMount ? mount(Comp, {
-        propsData
-    }) : createVueApp({
+    let app = createVueApp({
         ...Comp,
         propsData
     });
+    needMount && (app = createWrapper(app.mount(createElm())));
+    return app;
 };
 
 

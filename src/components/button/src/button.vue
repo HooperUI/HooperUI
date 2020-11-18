@@ -11,7 +11,7 @@ const alert:Component = defineComponent({
     name: 'HButton',
     setup() {
         const count = ref(0);
-        const content = reactive({title: 'Hello, HButton!'});
+        const content = reactive({title: 'Hello,HooperUI!'});
         onMounted(() => {
             setInterval(() => {
                 count.value++;

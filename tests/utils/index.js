@@ -8,7 +8,9 @@
 import {
     createApp as createVueApp
 } from 'vue';
-import {mount} from '@vue/test-utils';
+import {
+    mount
+} from '@vue/test-utils';
 import HooperUI from 'components/index';
 
 /**
@@ -44,22 +46,22 @@ export const destroyVM = function(vm) {
  * Create a new app with props data
  * @date 2020-11-13
  * @param {VueCompnent} Comp the component options
- * @param {Object} propsData the props data
+ * @param {Object} props the props data
  * @param {Boolean} needMount if you want to mount this app on a dom
  * @return {VueComponentInstance} this new app
  */
 export const createApp = function(Comp = {
     template: 'Hello, HooperUI!'
-}, propsData = {}, needMount = true) {
-    if (propsData === undefined || typeof propsData === 'boolean') {
-        needMount = propsData;
-        propsData = {};
+}, props = {}, needMount = true) {
+    if (props === undefined || typeof props === 'boolean') {
+        needMount = props;
+        props = {};
     }
     return needMount ? mount(Comp, {
-        propsData
+        props
     }) : createVueApp({
         ...Comp,
-        propsData
+        propsData: props
     });
 };
 
@@ -67,19 +69,25 @@ export const createApp = function(Comp = {
 /**
  * Create a new vue app, return this app
  * @date 2020-11-12
- * @param {VueCompnent} Comp the component options
+ * @param {VueCompnent} App the component options
  * @param {Boolean} needMount if you want to mount this app on a dom
  * @return {VueComponentInstance} this new app
  */
-export const createAppWithHooperUI = function(Comp = {
+export const createAppWithHooperUI = function(App = {
     template: 'Hello, HooperUI!'
 }, needMount = true) {
-    if (Object.prototype.toString.call(Comp) === '[object String]') {
-        Comp = {template: Comp};
+    if (Object.prototype.toString.call(App) === '[object String]') {
+        App = {template: App};
     }
-    let app = createVueApp(Comp);
+    if (needMount) {
+        return mount(App, {
+            global: {
+                plugins: [HooperUI]
+            }
+        });
+    }
+    const app = createVueApp(App);
     app.use(HooperUI);
-    needMount && (app = createWrapper(app.mount(createElm())));
     return app;
 };
 
@@ -99,9 +107,15 @@ export const createAppWithComp = function(App, Comp, needMount = true) {
             template: 'Hello, HooperUI!'
         };
     }
-    let app = createVueApp(App);
+    if (needMount) {
+        return mount(App, {
+            global: {
+                plugins: [Comp]
+            }
+        });
+    }
+    const app = createVueApp(App);
     app.use(Comp);
-    needMount && (app = createWrapper(app.mount(createElm())));
     return app;
 };
 

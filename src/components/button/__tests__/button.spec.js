@@ -8,22 +8,28 @@
 import Button from '../index';
 import {mount} from '@vue/test-utils';
 
+const Comp = {
+    template: '<div><Button>Hello,HooperUI!</Button></div>'
+};
 describe('HButton', () => {
-    it('content', () => {
-        const Comp = {
-            template: '<div><Button>Hello, HButton!</Button></div>'
-        };
-
-        const wrapper = mount(Comp, {
-            global: {
-                components: {
-                    Button
-                }
+    const app = mount(Comp, {
+        global: {
+            components: {
+                Button
             }
-        });
-
-        expect(wrapper.findComponent({name: 'HButton'}).text()).toContain(
-            'Hello, HButton!'
+        }
+    });
+    it('should have right content', () => {
+        expect(app.findComponent({name: 'HButton'}).text()).toContain(
+            'Hello,HooperUI!'
         );
+    });
+    it('should correct interval', done => {
+        setTimeout(() => {
+            expect(app.findComponent({name: 'HButton'}).text()).toContain(
+                '2'
+            );
+            done();
+        }, 2000);
     });
 });

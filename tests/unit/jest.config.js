@@ -26,7 +26,8 @@ module.exports = {
     testMatch: ['**/tests/unit/**/*.spec.js', '**/__tests__/**/*.spec.js'],
     moduleNameMapper: {
         '^components(.*)$': '<rootDir>/src/components$1',
-        '^utils(.*)$': '<rootDir>/src/utils$1'
+        '^utils(.*)$': '<rootDir>/src/utils$1',
+        '^tests(.*)$': '<rootDir>/tests$1'
     },
     coverageDirectory: '<rootDir>/tests/coverage',
     collectCoverageFrom: [
