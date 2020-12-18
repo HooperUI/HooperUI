@@ -1,9 +1,9 @@
 @import 'styles/base.scss';
 
-.#{$--prefixer}-button {
-    color: $--color-white;
-    background-color: $--color-primary;
-    border: 1px solid $--color-info;
+.hoo-button {
+    color: $color-white;
+    background-color: $color-primary;
+    border: 1px solid $color-info;
     width: 150px;
     height: 50px;
 }
