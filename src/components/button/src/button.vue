@@ -7,20 +7,37 @@ import {
     ref,
     PropType
 } from 'vue';
-type buttonTypes = PropType<'primary' | 'success' | 'warning' | 'danger' | 'info' | 'link' | 'normal'>;
+type buttonTypes = PropType<'button' | 'submit' | 'reset'>;
+type buttonColorTypes = PropType<'primary' | 'link' | 'normal' | normalColorTypes>;
 type buttonSize = PropType<'large' | 'normal' | 'mini'>;
 
 export default defineComponent({
     name: 'HButton',
     props: {
         type: {
-            type: String as buttonTypes,
+            type: String as buttonColorTypes,
             default: 'normal'
         },
         size: {
             type: String as buttonSize,
             default: 'normal'
-        }
+        },
+        icon: {
+            type: String,
+            default: ''
+        },
+        buttonType: {
+            type: String as buttonTypes,
+            default: 'button',
+            validator: (val: string) => {
+                return ['button', 'submit', 'reset'].includes(val);
+            }
+        },
+        loading: Boolean,
+        disabled: Boolean,
+        shallow: Boolean,
+        round: Boolean,
+        circle: Boolean
     },
     setup() {
         const count = ref(0);
