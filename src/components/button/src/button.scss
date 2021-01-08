@@ -1,4 +1,23 @@
+@use "sass:map";
+
 @import 'styles/base.scss';
+
+@mixin genColorfulButton($colorName, $colorHex) {
+    &.type-#{$colorName} {
+        background-color: $colorHex;
+        border: none;
+        color: $color-white;
+
+        &:hover {
+            background-color: lighten($colorHex, 5%);
+            cursor: pointer;
+        }
+
+        &:active {
+            background-color: darken($colorHex, 3%);
+        }
+    }
+}
 
 .hoo-button {
     box-sizing: border-box;
@@ -11,16 +30,22 @@
     border-radius: 4px;
     transition: all .1s;
 
-    & + & {
-        margin-left: 10px;
-    }
-
-    &:hover:not(.disabled) {
+    &:hover {
         background-color: $color-gray-2;
         cursor: pointer;
     }
 
-    &:active:not(.disabled) {
+    &:active {
         background-color: $color-gray-3;
+    }
+
+    & + & {
+        margin-left: 10px;
+    }
+
+    $colorTypes: primary, success, warning, danger, info;
+
+    @each $colorType in $colorTypes {
+        @include genColorfulButton($colorType, map.get($hooper-theme-colors, $colorType));
     }
 }

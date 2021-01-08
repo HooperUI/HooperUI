@@ -8,9 +8,9 @@
 const Counter = {
     template: `
     {{counter}}
-    <h-button @click="plus">Hello, Hooper!</h-button>
-    <h-button @click="plus">Hello, Hooper!</h-button>
-    <h-button @click="plus">Hello, Hooper!</h-button>
+    <h-button @click="plus">正常按钮</h-button>
+    <h-button type="primary" @click="plus">主题色按钮</h-button>
+    <h-button type="success" @click="plus">成功按钮</h-button>
     `,
     data() {
         return {

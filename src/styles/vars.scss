@@ -7,13 +7,23 @@
 
 //  colors
 $color-primary: #4339F2 !default;
-$color-danger: #FF3A29 !default;
-$color-info: #02A0FC !default;
 $color-success: #34B53A !default;
 $color-warning: #FFB200 !default;
+$color-danger: #FF3A29 !default;
+$color-info: #02A0FC !default;
 $color-white: #FFF !default;
 $color-black: #000 !default;
 $color-normal: #8F9BB3 !default;
+$hooper-theme-colors: (
+    "primary": $color-primary,
+    "success": $color-success,
+    "warning": $color-warning,
+    "danger": $color-danger,
+    "info": $color-info,
+    "white": $color-white,
+    "black": $color-black,
+    "normal": $color-normal
+);
 
 // lighter colors
 $color-primary-light: #DAD7FE !default;
