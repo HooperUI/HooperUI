@@ -13,6 +13,7 @@ $color-success: #34B53A !default;
 $color-warning: #FFB200 !default;
 $color-white: #FFF !default;
 $color-black: #000 !default;
+$color-normal: #8F9BB3 !default;
 
 // lighter colors
 $color-primary-light: #DAD7FE !default;
@@ -22,12 +23,25 @@ $color-success-light: #E2FBD7 !default;
 $color-warning-light: #FFF5CC !default;
 
 // background color
-$background-color: #F6F6F6 !default;
+$color-gray-1: #F7F9FC !default;
+$color-gray-2: #EDF1F7 !default;
+$color-gray-3: #E4E9F2 !default;
+$color-gray-4: #C5CEE0 !default;
+$color-gray-5: #8F9BB3 !default;
+$color-gray-6: #2E3A59 !default;
+
+// text
+$color-text-primary: #222B45 !default;
+$color-text-normal: #8F9BB3 !default;
 
 // border
 $border-width-base: 1px !default;
 $border-style-base: solid !default;
 
-// text
-$color-text-primary: #000 !default;
-$color-text-regular: #929292 !default;
+// font-size
+$font-size-h1: 40px;
+$font-size-h2: 32px;
+$font-size-h3: 20px;
+$font-size-h4: 14px;
+$font-size-h5: 10px;
+$font-size-normal: 14px;

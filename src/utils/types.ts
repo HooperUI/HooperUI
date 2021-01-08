@@ -1,4 +1,5 @@
-import {VNodeChild} from 'vue';
+import {App, Plugin, VNodeChild} from 'vue';
 
+export type VueApp = App;
 export type VueNode = VNodeChild | JSX.Element;
-export {App as VueApp, Plugin as VuePlugin} from 'vue';
+export type VuePlugin = Plugin;

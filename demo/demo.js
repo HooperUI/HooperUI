@@ -6,28 +6,26 @@
  */
 
 const Counter = {
-    template: '{{counter}}<button-counter></button-counter><h-button></h-button>',
+    template: `
+    {{counter}}
+    <h-button @click="plus">Hello, Hooper!</h-button>
+    <h-button @click="plus">Hello, Hooper!</h-button>
+    <h-button @click="plus">Hello, Hooper!</h-button>
+    `,
     data() {
         return {
             counter: 0
         };
+    },
+    methods: {
+        plus() {
+            console.log(1);
+            this.counter++;
+        }
     }
 };
 
 const app = window.Vue.createApp(Counter);
-
-app.component('ButtonCounter', {
-    data() {
-        return {
-            count: 0
-        };
-    },
-    template: `
-      <button @click="count++">
-        You clicked me {{ count }} times.
-      </button>`
-});
-
 app.use(window.HooperUI.Button);
 app.mount('#app');
 console.log(app);

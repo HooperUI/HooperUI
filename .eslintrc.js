@@ -1,4 +1,5 @@
 module.exports = {
+    parser: 'vue-eslint-parser',
     env: {
         browser: true,
         es2021: true
@@ -33,6 +34,7 @@ module.exports = {
         'max-len': ['error', {
             code: 120
         }],
+        'no-unused-vars': ['warn'],
         'operator-linebreak': ['error', 'before'],
         'brace-style': ['error', 'stroustrup', {
             allowSingleLine: true

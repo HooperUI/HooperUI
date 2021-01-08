@@ -4,11 +4,10 @@
         "stylelint-scss"
     ],
     "rules": {
-        "indentation": [4,
-            {
-                "except": ["block"]
-            }
-        ],
-        "color-hex-case": "upper"
+        "indentation": 4,
+        "color-hex-case": "upper",
+        "number-leading-zero": "never",
+        "at-rule-no-unknown": null, 
+        "scss/at-rule-no-unknown": true
     }
 }

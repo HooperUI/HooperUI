@@ -14,9 +14,14 @@
             "components/*": ["./src/components/*"],
             "utils/*": ["./src/utils/*"],
             "styles/*": ["./src/styles/*"]
-        }
+        },
+        "typeRoots": [
+            "./node_modules/@types",
+            "./typings"
+        ]
     },
     "include": [
-        "./src/**/*"
+        "./typings/**/*",
+        "./src/**/*",
     ]
 }

@@ -1,3 +1,9 @@
-.hoo-button
-    .aaaa {{content.title}}
-    .aaa {{count}}
+button(:class= "['hoo-button', 'size-' + size, 'type-' + type, \
+    {loading, disabled, shallow, round, circle}, \
+    $slots.default ? '' : 'no-content']"
+    :disabled="disabled || loading"
+    :type="buttonType")
+    span.loading(v-if="loading")
+    span.icon(v-if="icon && !loading" :class="icon")
+    span.content
+        slot

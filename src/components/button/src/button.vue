@@ -8,8 +8,8 @@ import {
     PropType
 } from 'vue';
 type buttonTypes = PropType<'button' | 'submit' | 'reset'>;
-type buttonColorTypes = PropType<'primary' | 'link' | 'normal' | normalColorTypes>;
-type buttonSize = PropType<'large' | 'normal' | 'mini'>;
+type buttonColorTypes = PropType<'primary' | 'link' | 'normal' | globalTypes>;
+type buttonSize = PropType<globalSizes>;
 
 export default defineComponent({
     name: 'HButton',
@@ -51,7 +51,9 @@ export default defineComponent({
             count,
             content
         };
+    },
+    methods: {
     }
 });
 </script>
-<style lang="sass" src="./button.scss"></style>
+<style lang="sass" src="./button.scss" scoped></style>
