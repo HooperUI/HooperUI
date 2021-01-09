@@ -46,17 +46,6 @@ export default defineComponent({
         block: Boolean
     },
     setup() {
-        const count = ref(0);
-        const content = reactive({title: 'Hello,HooperUI!'});
-        onMounted(() => {
-            setInterval(() => {
-                count.value++;
-            }, 1000);
-        });
-        return {
-            count,
-            content
-        };
     },
     methods: {
     }
