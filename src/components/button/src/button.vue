@@ -33,11 +33,17 @@ export default defineComponent({
                 return ['button', 'submit', 'reset'].includes(val);
             }
         },
+        shadow: {
+            type: Boolean,
+            default: false
+        },
+        round: Boolean,
+        square: Boolean,
+        shallow: Boolean,
+        dashed: Boolean,
         loading: Boolean,
         disabled: Boolean,
-        shallow: Boolean,
-        round: Boolean,
-        circle: Boolean
+        block: Boolean
     },
     setup() {
         const count = ref(0);
@@ -56,4 +62,4 @@ export default defineComponent({
     }
 });
 </script>
-<style lang="sass" src="./button.scss" scoped></style>
+<style lang="sass" src="./button.scss"></style>

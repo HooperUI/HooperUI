@@ -17,19 +17,18 @@ describe('HButton', () => {
         const app = createAppWithComp({
             template: '<div><h-button>Hello,HooperUI!</h-button></div>'
         }, Button);
-        expect(app.findComponent('.hoo-button').exists()).toBe(true);
-        expect(app.html()).toContain('Hello,HooperUI!');
+        expect(app.findComponent('.hoo-btn').exists()).toBe(true);
+        expect(app.text()).toContain('Hello,HooperUI!');
     });
     it('should be installed by HooperUI', () => {
         const app = createAppWithHooperUI({
             template: '<div><h-button>Hello,HooperUI!</h-button></div>'
         });
-        expect(app.findComponent('.hoo-button').exists()).toBe(true);
-        expect(app.html()).toContain('Hello,HooperUI!');
+        expect(app.findComponent('.hoo-btn').exists()).toBe(true);
+        expect(app.text()).toContain('Hello,HooperUI!');
     });
     it('should correct executed', () => {
         const app = createApp(Button);
-        expect(app.findComponent('.hoo-button').exists()).toBe(true);
-        expect(app.html()).toContain('Hello,HooperUI!');
+        expect(app.findComponent('.hoo-btn').exists()).toBe(true);
     });
 });

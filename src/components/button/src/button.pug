@@ -1,6 +1,17 @@
-button(:class= "['hoo-button', 'size-' + size, 'type-' + type, \
-    {loading, disabled, shallow, round, circle}, \
-    $slots.default ? '' : 'no-content']"
+button(:class= `[
+    'hoo-btn',
+    'hoo-btn-' + type,
+    size === 'normal' ? '' : 'hoo-btn-' + size,
+    {
+        'hoo-btn-loading': loading,
+        'hoo-btn-shallow': shallow,
+        'hoo-btn-round': round,
+        'hoo-btn-square': square,
+        'hoo-btn-dashed': dashed,
+        'hoo-block': block,
+        'hoo-btn-clean': !shadow,
+        'hoo-btn-empty': !$slots.default
+    }]`
     :disabled="disabled || loading"
     :type="buttonType")
     span.loading(v-if="loading")

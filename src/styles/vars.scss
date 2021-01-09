@@ -14,7 +14,7 @@ $color-info: #02A0FC !default;
 $color-white: #FFF !default;
 $color-black: #000 !default;
 $color-normal: #8F9BB3 !default;
-$hooper-theme-colors: (
+$hooperui-theme-colors: (
     "primary": $color-primary,
     "success": $color-success,
     "warning": $color-warning,
@@ -45,7 +45,7 @@ $color-text-primary: #222B45 !default;
 $color-text-normal: #8F9BB3 !default;
 
 // border
-$border-width-base: 1px !default;
+$border-width-base: 3px !default;
 $border-style-base: solid !default;
 
 // font-size

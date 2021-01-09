@@ -24,12 +24,4 @@ describe('HButton', () => {
             'Hello,HooperUI!'
         );
     });
-    it('should correct interval', done => {
-        setTimeout(() => {
-            expect(app.findComponent({name: 'HButton'}).text()).toContain(
-                '2'
-            );
-            done();
-        }, 2000);
-    });
 });

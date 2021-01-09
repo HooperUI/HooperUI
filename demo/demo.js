@@ -8,13 +8,32 @@
 const Counter = {
     template: `
     {{counter}}
-    <h-button @click="plus">正常按钮</h-button>
-    <h-button type="primary" @click="plus">主题色按钮</h-button>
-    <h-button type="success" @click="plus">成功按钮</h-button>
+    <br/>
+    <h-button v-for="color in colors" :type="color" @click="plus">{{color.toUpperCase()}}</h-button>
+    <br/><br/>
+    <h-button v-for="color in colors" :type="color" @click="plus" shallow>{{color.toUpperCase()}}</h-button>
+    <br/><br/>
+    <h-button v-for="color in colors" :type="color" @click="plus" round shadow>{{color.toUpperCase()}}</h-button>
+    <br/><br/>
+    <h-button v-for="color in colors" :type="color" @click="plus" dashed shadow>{{color.toUpperCase()}}</h-button>
+    <br/><br/>
+    <h-button v-for="color in colors" :type="color" @click="plus" square shallow shadow>
+        {{color.toUpperCase()}}
+        </h-button>
+    <br/><br/>
+    <br/><br/>
+    <h-button v-for="color in colors" :type="color" @click="plus" disabled shadow>
+        {{color.toUpperCase()}}
+    </h-button>
+    <br/><br/>
+    <h-button v-for="color in colors" :type="color" @click="plus" disabled dashed round shadow>
+        {{color.toUpperCase()}}
+    </h-button>
     `,
     data() {
         return {
-            counter: 0
+            counter: 0,
+            colors: ['normal', 'primary', 'success', 'danger', 'warning', 'info', 'link']
         };
     },
     methods: {
@@ -28,4 +47,5 @@ const Counter = {
 const app = window.Vue.createApp(Counter);
 app.use(window.HooperUI.Button);
 app.mount('#app');
+window.app = app;
 console.log(app);
