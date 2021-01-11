@@ -10,6 +10,7 @@ $colorTypes: primary, success, warning, danger, info;
     background-color: $color-gray-1;
     box-shadow: $color-gray-3 0 2px 10px;
     font-size: $font-size-normal;
+    outline: none;
     color: $color-text-primary;
     border-radius: 4 * $border-width-base;
     padding: 14px - $border-width-base 22px - $border-width-base;
