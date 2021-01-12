@@ -62,6 +62,5 @@ Demo(function () {
     });
     app.use(HooperUI);
     app.mount('#app2');
-    console.log(app)
 });
 </script>

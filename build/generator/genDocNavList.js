@@ -103,7 +103,10 @@ function genNavListAndWatch(cb) {
         else if (event === 'change'
             && /.*\/(.*)\.md$/.test(filename)
             && oldComponents.indexOf(RegExp.$1) >= 0) {
-            const file = path.resolve(componentsPath, RegExp.$1, `${RegExp.$1}.md`);
+            const file = path.resolve(componentsPath, RegExp.$1, `docs/${RegExp.$1}.md`);
+            // console.log('debug:', event, filename, /.*\/(.*)\.md$/.test(filename),
+            //     RegExp.$1, oldComponents.indexOf(RegExp.$1) >= 0,
+            //     file, fs.existsSync(file), path.resolve(docPath, `${RegExp.$1}.md`));
             if (fs.existsSync(file)) {
                 fs.copyFileSync(file, path.resolve(docPath, `${RegExp.$1}.md`));
                 console.log(`Changed ${filename}`);

@@ -65,6 +65,7 @@ function genCompListAndWatch(cb) {
     let oldComps = genCompList();
     console.log('I\'m now watching your changes on components...');
     const watcher = fs.watch(componentsPath, {
+        // force to watch these files even they were be watching
         recursive: true
     }, function(event, filename) {
         if (event === 'rename' && filename) {
@@ -82,8 +83,9 @@ function genCompListAndWatch(cb) {
                 });
                 oldComps = newComps;
             }
+        }
         // when edit any doc.md file
-        } else if (event === 'change' && filename) {
+        else if (event === 'change' && filename) {
             cb && cb({
                 event,
                 filename,
