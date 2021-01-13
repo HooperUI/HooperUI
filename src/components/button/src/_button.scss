@@ -6,10 +6,10 @@
         color: $color-white;
         padding: 14px 22px;
         background-color: $colorHex;
-        box-shadow: lighten($colorHex, 25%) 0 2px 10px;
+        box-shadow: rgba(darken($colorHex, 8%), .8) 0 2px 10px;
 
         &:hover {
-            background-color: lighten($colorHex, 8%);
+            background-color: lighten($colorHex, 10%);
         }
 
         &:active {
@@ -39,7 +39,7 @@
         box-shadow: rgba($colorHex, .3) 0 2px 10px;
 
         &:hover {
-            background-color: rgba($colorHex, .15);
+            background-color: rgba($colorHex, .35);
         }
 
         &:active {

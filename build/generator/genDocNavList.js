@@ -28,7 +28,9 @@ function genNavList(newComps) {
     newComps = newComps || componentsJson;
 
     let tpl = `${Object.keys(newComps)
-        .map(comp => `        - ${comp}: components/${comp}.md`)
+        .map(comp => `        - ${comp.toLowerCase()
+            // First letter uppercase
+            .replace(/( |^)[a-z]/g, L => L.toUpperCase())}: components/${comp}.md`)
         .join('\n')}`;
 
     tpl = fs.readFileSync(path.resolve(docsPath, 'mkdocs.tpl'), 'utf8')

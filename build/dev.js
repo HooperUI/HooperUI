@@ -52,7 +52,6 @@ mkdocServer.on('close', () => {
     showLog('mkdocServer exited\n');
 });
 
-
 process.on('SIGINT', function() {
     docGen.close();
     spawn('kill', [mkdocServer.pid, devServer.pid]);

@@ -22,19 +22,27 @@
     100% {
         transform: scale(1);
     }
+
     20%,
     60% {
         transform: scale(1.15);
     }
 }
+
 .footer-heart {
     animation: footer-heart 1000ms infinite;
 }
+
 .hooper-content__footer {
     text-align: center;
     font-size: 14px;
     padding: 30px 0 20px;
 }
+
 .hooper-content__footer a {
     color: #DDD;
+}
+
+.md-content .hoo-btn {
+    margin-bottom: 10px;
 }

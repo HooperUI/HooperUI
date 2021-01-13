@@ -11,6 +11,8 @@ theme:
     custom_dir: overrides
     language: zh
     highlightjs: true
+    icon:
+        repo: fontawesome/brands/github-alt
     palette:
         scheme: preference
         # primary: deep purple

@@ -10,12 +10,23 @@
         <meta property="environment" content="prod">
     {% endif %}
     <script>
-    function Demo(cb) {
-        setTimeout(cb, 100);
-    }
+        const cbs = [];
+        function Demo(cb) {
+            cbs.push(cb);
+        }
     </script>
 {% endblock %}
-
+{% block header %}
+    {% include "partials/header.html" %}
+{% endblock %}
+{% block announce %}
+  <a href="https://www.hooperui.com" style="color: #FFFFFF;">
+    <span class="twemoji" style="margin-right: 5px;">
+        {% include ".icons/fontawesome/regular/hand-peace.svg" %}
+    </span>
+    New HooperUI based on Vue3.0 & typescript is coming! Click to checkout our process~
+  </a>
+{% endblock %}
 
 {% block content %}
 {{ super() }}
@@ -40,5 +51,10 @@
     {% else %}
         <script src="{{ 'assets/hooperui.js'|url }}"></script>
     {% endif %}
+    <script>
+        cbs.forEach(cb => {
+            cb();
+        })
+    </script>
 {% endblock %}
 
