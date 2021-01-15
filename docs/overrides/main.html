@@ -53,6 +53,7 @@
     {% endif %}
     <script>
         cbs.forEach(cb => {
+            console.log('cb run');
             cb();
         })
     </script>

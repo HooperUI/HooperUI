@@ -17,6 +17,7 @@ Demo(function () {
     const app = Vue.createApp({});
     app.use(HooperUI);
     app.mount('#app');
+    console.log('a');
 });
 </script>
 
