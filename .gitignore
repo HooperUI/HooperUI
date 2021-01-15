@@ -13,5 +13,6 @@ lib
 .npmrc
 dist/.*\-(.){6}\.(js|css)
 dist/.*\.html
+doc/dist
 docs/dist
 tests/coverage
