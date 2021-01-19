@@ -1,12 +1,15 @@
 <template lang='pug'>
     .theme-container
-        Content
+        SideBar.sidebar
+        Content.main-content
+        .roots
 </template>
 <style lang="scss" src="../styles/index.scss"></style>
 <script>
+import SideBar from '../components/sidebar.vue';
 export default {
-    mounted() {
-        console.log(this.$page, this.$site);
+    components: {
+        SideBar
     }
 }
 </script>

@@ -17,11 +17,16 @@ module.exports = {
             description: 'A super tiny UI library based on Vue.js 3.0 & typescript.'
         }
     },
+    shouldPrefetch: () => true,
     dest: './dist',
     markdown: {
         lineNumbers: false
     },
     // plugins: ['@vuepress/active-header-links'],
+    plugins: ['@vuepress/pwa', {
+        serviceWorker: true,
+        updatePopup: true
+    }],
     themeConfig: {
         // nav: [{
         //         text: 'Home',
@@ -64,7 +69,7 @@ module.exports = {
                 algolia: {},
                 nav: [{
                     text: 'Guides',
-                    link: '/guides/'
+                    link: '/en/guides/'
                 }],
                 sidebar: {
                     '/en/': [ /* ... */ ],

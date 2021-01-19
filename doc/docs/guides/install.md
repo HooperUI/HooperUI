@@ -10,7 +10,7 @@
 npm i hooperui -S
 ```
 
-在此之前，你可能还需要引入 Vue3.0：
+在此之前，你可能还需要引入 Vue3.0：[pr](./pr.md)
 
 ```bash
 npm install vue@next

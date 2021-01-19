@@ -1,13 +1,16 @@
 <template lang="pug">
-    .header HEADER
+    .header
+        ul
+            li(v-for="(item, index) in navs.nav")
+                a(:href="item.link") {{item.text}}
 </template>
 <script>
 export default {
     computed: {
         navs() {
-            return this.$site.themeConfig.locales.map(nav => {
-
-            });
+            const themeConf = this.$themeConfig;
+            const langPath = this.$localeConfig.path;
+            return themeConf.locales[langPath];
         }
     },
     mounted() {

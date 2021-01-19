@@ -36,7 +36,7 @@ app.use(HooperUI);
 app.mount('#wrapper');
 ```
 
-更多全局配置项和按需引入，请参见：[安装](./install.md)
+更多全局配置项和按需引入，请参见：[安装](./install.md)[pr](./pr.md)
 
 ## 开始使用
 
