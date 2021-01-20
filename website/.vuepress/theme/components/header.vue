@@ -20,7 +20,7 @@ export default {
         const langPath = useRouteLocale();
         const localeData = useThemeLocaleData();
         const navs = computed(() => localeData.value.locales[langPath.value].navbar);
-        // console.log(siteData);
+
         return {
             langPath,
             navs

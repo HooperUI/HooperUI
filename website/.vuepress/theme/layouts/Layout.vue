@@ -5,16 +5,21 @@
         SideBar.sidebar
         .main-content
             Content
-        .footer
+        Catalogue.catalog
+    Footer.footer
 </template>
 <style lang="scss" src="../styles/index.scss"></style>
 <script>
-import SideBar from '../components/sidebar.vue';
 import Header from '../components/header.vue';
+import SideBar from '../components/sidebar.vue';
+import Catalogue from '../components/catalogue';
+import Footer from '../components/footer.vue';
 export default {
     components: {
+        Header,
         SideBar,
-        Header
+        Catalogue,
+        Footer
     }
 }
 </script>
