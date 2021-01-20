@@ -36,7 +36,7 @@ app.use(HooperUI);
 app.mount('#wrapper');
 ```
 
-更多全局配置项和按需引入，请参见：[安装](./install.md)
+更多全局配置项和按需引入，请参见：[安装](./install.md)[pr](./pr.md)
 
 ## 开始使用
 
@@ -54,13 +54,6 @@ app.mount('#wrapper');
     <div>aaa</div>
 
 在 CodePen 你还可以自行体验其他 HooperUI 的组件：
-
-<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="html,result" data-user="ziyoung" data-slug-hash="rRKYpd" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Element demo">
-  <span>See the Pen <a href="https://codepen.io/ziyoung/pen/rRKYpd">
-  Element demo</a> by hetech (<a href="https://codepen.io/ziyoung">@ziyoung</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 恭喜，你可以继续深入的了解 HooperUI 了！ :partying_face:
 

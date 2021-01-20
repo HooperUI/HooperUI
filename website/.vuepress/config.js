@@ -6,7 +6,9 @@
  */
 
 module.exports = {
+    lang: 'zh-CN',
     title: 'HooperUI - Easy and Fast',
+    logo: 'https://vuejs.org/images/logo.png',
     locales: {
         '/': {
             lang: 'zh-CN',
@@ -18,42 +20,21 @@ module.exports = {
         }
     },
     shouldPrefetch: () => true,
+    debug: true,
     dest: './dist',
     markdown: {
-        lineNumbers: false
+        code: {
+            lineNumbers: false
+        }
     },
-    // plugins: ['@vuepress/active-header-links'],
-    plugins: ['@vuepress/pwa', {
-        serviceWorker: true,
-        updatePopup: true
-    }],
+    theme: require('path').resolve(__dirname, './theme'),
     themeConfig: {
-        // nav: [{
-        //         text: 'Home',
-        //         link: '/'
-        //     },
-        //     {
-        //         text: 'Guide',
-        //         link: '/guide/'
-        //     },
-        //     {
-        //         text: 'External',
-        //         link: 'https://google.com'
-        //     },
-        // ]
         locales: {
             '/': {
-                // 多语言下拉菜单的标题
-                selectText: '选择语言',
-                // 该语言在下拉菜单中的标签
-                label: '简体中文',
-                // 无障碍
-                ariaLabel: 'Languages',
-                // 编辑链接文字
+                selectLanguageText: '选择语言',
+                selectLanguageName: '简体中文',
                 editLinkText: '在 GitHub 上编辑此页',
-                // 当前 locale 的 algolia docsearch 选项
-                algolia: {},
-                nav: [{
+                navbar: [{
                     text: '指南',
                     link: '/guides/'
                 }],
@@ -63,11 +44,10 @@ module.exports = {
                 }
             },
             '/en/': {
-                selectText: 'Languages',
-                label: 'English',
+                selectLanguageText: 'Languages',
+                selectLanguageName: 'English',
                 editLinkText: 'Edit this page on GitHub',
-                algolia: {},
-                nav: [{
+                navbar: [{
                     text: 'Guides',
                     link: '/en/guides/'
                 }],

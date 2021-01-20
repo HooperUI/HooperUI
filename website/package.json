@@ -1,0 +1,16 @@
+{
+    "name": "doc",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "docs:dev": "npx vuepress dev",
+        "docs:build": "npx vuepress build"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "vuepress": "^2.0.0-alpha.18"
+    }
+}

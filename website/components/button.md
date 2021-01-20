@@ -17,14 +17,14 @@ weight: 1
     <h-button type="warning">警告按钮</h-button>
     <h-button type="info">信息按钮</h-button>
 </div>
-<script>
+<!-- <script>
 Demo(function () {
     const app = Vue.createApp({});
     app.use(HooperUI);
     app.mount('#app');
     console.log('a');
 });
-</script>
+</script> -->
 
 === "示例代码"
     ```html
@@ -62,13 +62,13 @@ Demo(function () {
     <h-button type="danger" square>我方了</h-button>
     <h-button type="warning" dashed>我有虚线描边</h-button>
 </div>
-<script>
+<!-- <script>
 Demo(function () {
     const app = Vue.createApp({});
     app.use(HooperUI);
     app.mount('#app2');
 });
-</script>
+</script> -->
 
 === "示例代码"
     ```html
@@ -78,34 +78,34 @@ Demo(function () {
     <h-button type="danger" square>我方了</h-button>
     <h-button type="warning" dashed>我有虚线描边</h-button>
     ```
-=== "完整展示"
-    <div id="app3">
-        <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" shadow>{{name}}</h-button></div>
-        <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" shallow>{{name}}</h-button></div>
-        <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" round>{{name}}</h-button></div>
-        <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" dashed>{{name}}</h-button></div>
-        <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" square>{{name}}</h-button></div>
-    </div>
-    <script>
-    Demo(function () {
-        const app = Vue.createApp({
-            data() {
-                return {
-                    colors: {
-                        normal: '普通按钮',
-                        primary: '主题色按钮',
-                        success: '成功按钮',
-                        danger: '危险按钮',
-                        warning: '警告按钮',
-                        info: '信息按钮',
-                    }
-                };
-            }
-        });
-        app.use(HooperUI);
-        app.mount('#app3');
+
+<div id="app3">
+    <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" shadow>{{name}}</h-button></div>
+    <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" shallow>{{name}}</h-button></div>
+    <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" round>{{name}}</h-button></div>
+    <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" dashed>{{name}}</h-button></div>
+    <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" square>{{name}}</h-button></div>
+</div>
+<!-- <script>
+Demo(function () {
+    const app = Vue.createApp({
+        data() {
+            return {
+                colors: {
+                    normal: '普通按钮',
+                    primary: '主题色按钮',
+                    success: '成功按钮',
+                    danger: '危险按钮',
+                    warning: '警告按钮',
+                    info: '信息按钮',
+                }
+            };
+        }
     });
-    </script>
+    app.use(HooperUI);
+    app.mount('#app3');
+});
+</script> -->
 
 !!! danger "使用注意"
     `type=normal` 类型的按钮，在设置 `shallow` 和 `dashed` 之后，不具备半透明效果，这在黑色主题的网站上表现较为特殊，请注意使用。

@@ -16,3 +16,6 @@ dist/.*\.html
 doc/dist
 docs/dist
 tests/coverage
+node_modules
+.temp
+.cache

@@ -28,28 +28,28 @@ var a = 0
 
 :partying_face:
 
-=== "C"
-    <div style="color: red">aaaa</div>
 
-    ``` c
-    #include <stdio.h>
+<div style="color: red">aaaa</div>
 
-    int main(void) {
-      printf("Hello world!\n");
-      return 0;
-    }
-    ```
+``` c
+#include <stdio.h>
 
-=== "C++"
+int main(void) {
+    printf("Hello world!\n");
+    return 0;
+}
+```
 
-    ``` c++
-    #include <iostream>
 
-    int main(void) {
-      std::cout << "Hello world!" << std::endl;
-      return 0;
-    }
-    ```
+
+``` c++
+#include <iostream>
+
+int main(void) {
+    std::cout << "Hello world!" << std::endl;
+    return 0;
+}
+```
 
 
 ``` python
@@ -95,10 +95,4 @@ class SomeClass:
     * [ ] Praesent sed risus massa
 * [ ] Aenean pretium efficitur erat, donec pharetra, ligula non scelerisque
 
-
-<p class="codepen" data-height="396" data-theme-id="dark" data-default-tab="html,result" data-user="ziyoung" data-slug-hash="rRKYpd" style="height: 396px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Element demo">
-  <span>See the Pen <a href="https://codepen.io/ziyoung/pen/rRKYpd">
-  Element demo</a> by hetech (<a href="https://codepen.io/ziyoung">@ziyoung</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<!-- <script></script> -->
