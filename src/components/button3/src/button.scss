@@ -1,0 +1,67 @@
+@use "sass:map";
+
+@import 'styles/base';
+@import './_button';
+$compName: 'hoo-btn';
+$colorTypes: primary, success, warning, danger, info;
+
+.#{$compName} {
+    border: $border-width-base solid $color-gray-3;
+    background-color: $color-gray-1;
+    box-shadow: rgba($color-gray-4, .5) 0 2px 10px;
+    font-size: $font-size-normal;
+    outline: none;
+    color: $color-text-primary;
+    border-radius: 4 * $border-width-base;
+    padding: 14px - $border-width-base 22px - $border-width-base;
+    transition: all .15s;
+
+    &:hover {
+        background-color: $color-gray-2;
+        cursor: pointer;
+    }
+
+    &:active {
+        background-color: $color-gray-1;
+    }
+
+    &:not(&:last-child) {
+        margin-right: 10px;
+    }
+}
+
+@each $colorType in $colorTypes {
+    @include genColorfulButton($compName, $colorType, map.get($hooperui-theme-colors, $colorType));
+    @include genShallowButton($compName, $colorType, map.get($hooperui-theme-colors, $colorType));
+}
+
+.#{$compName}.#{$compName}-square {
+    border-radius: 0;
+}
+.#{$compName}.#{$compName}-round {
+    border-radius: 100px;
+    padding-left: 26px;
+    padding-right: 26px;
+}
+.#{$compName}.#{$compName}-clean {
+    box-shadow: none;
+}
+.#{$compName}.#{$compName}-dashed {
+    border-style: dashed;
+}
+// Need to rewrite the style of normal button
+.#{$compName}-normal.#{$compName}-dashed {
+    // darker border
+    border-color: $color-gray-5;
+
+    &[disabled] {
+        border-color: $color-gray-4;
+    }
+}
+.#{$compName}[disabled] {
+    color: $color-gray-4;
+    position: relative;
+    background: $color-gray-2;
+    box-shadow: $color-gray-3 0 2px 10px;
+    cursor: not-allowed;
+}

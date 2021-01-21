@@ -8,15 +8,18 @@
  * @copyright: HooperUI @ MIT
  */
 const path = require('path');
+const watch = require('watch');
+
 const {spawn} = require('child_process');
-const {genNavListAndWatch} = require('./generator/genDocNavList');
+const {genWebsiteAndWatch} = require('./generator/genWebsite');
+const {genCompListAndWatch} = require('./generator/genCompList');
 const {showLog} = require('./utils');
 
 // Set process title
 process.title = 'HooperUI DEV Process';
 
 
-// Start webpack-dev-server
+// Start webpack-dev-server to generate HooperUI on time.
 spawn('kill', ['-9', '`lsof -i:8001 -t`']);
 const devServer = spawn('webpack-dev-server', ['--config', 'webpack.dev.js', '--client-log-level', 'silent'], {
     cwd: __dirname
@@ -33,28 +36,31 @@ devServer.on('close', () => {
 });
 
 
-// Start Doc Generate
-const docGen = genNavListAndWatch();
+// Start website Generate
+const websiteWatchRoot = genWebsiteAndWatch();
+const compWatchRoot = genCompListAndWatch();
 
-// Start mkdoc serve
-spawn('kill', ['-9', '`lsof -i:8000 -t`']);
-const mkdocServer = spawn('mkdocs', ['serve', '--quiet'], {
-    cwd: path.resolve(__dirname, '../docs')
+// Start vuePress serve
+spawn('kill', ['-9', '`lsof -i:8080 -t`']);
+const vuePressServer = spawn('npx', ['vuepress', 'dev'], {
+    cwd: path.resolve(__dirname, '../website/webroot')
 });
-mkdocServer.stderr.on('data', data => {
-    // console.log(data.toString());
-    const result = data.toString().match(/(((INFO|WORNING)\s+\-.*\n)|(\[Errno.*\n))/);
-    if (result && !/Browser\sConnected:/.test(result)) {
-        result && showLog(`mkdocServer ${result[1]}`, result[1].match(/(\[Errno.*\n)/) ? 'error' : 'info');
-    }
+vuePressServer.stderr.on('data', data => {
+    console.log(data.toString());
+    // const result = data.toString().match(/(((INFO|WORNING)\s+\-.*\n)|(\[Errno.*\n))/);
+    // if (result && !/Browser\sConnected:/.test(result)) {
+    //     result && showLog(`vuePressServer ${result[1]}`, result[1].match(/(\[Errno.*\n)/) ? 'error' : 'info');
+    // }
 });
-mkdocServer.on('close', () => {
-    showLog('mkdocServer exited\n');
+vuePressServer.on('close', () => {
+    showLog('vuePressServer exited\n');
 });
 
 process.on('SIGINT', function() {
     docGen.close();
-    spawn('kill', [mkdocServer.pid, devServer.pid]);
+    spawn('kill', [devServer.pid]);
+    watch.unwatchTree(websiteWatchRoot);
+    watch.unwatchTree(compWatchRoot);
     console.log(''); // This is must.
     showLog('HooperUI DEV serve exited.\n');
     process.exit();

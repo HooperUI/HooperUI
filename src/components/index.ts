@@ -10,8 +10,9 @@ import {VueApp} from 'utils/types';
 // !DO NOT DELETE the comment below
 // codeHolder
 import Button from './button';
+import Button3 from './button3';
 
-const components = [Button];
+const components = [Button, Button3];
 // holderEnd
 // !DO NOT DELETE the comment above
 

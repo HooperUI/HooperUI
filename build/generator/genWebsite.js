@@ -11,14 +11,12 @@ const path = require('path');
 const exec = require('child_process').exec;
 const confs = require('../../conf');
 const mvdir = require('mvdir');
+const del = require('del');
+const watch = require('watch');
 
-const {genCompListAndWatch} = require('./genCompList');
-const componentsJsonPath = path.resolve(confs.alias.root, 'components.json');
-const componentsJson = require(componentsJsonPath);
-
-const componentsPath = confs.alias.components;
 const docsPath = confs.alias.docs;
 const sitePath = confs.alias.website;
+const siteDocPath = path.resolve(sitePath, 'webroot');
 
 /**
  * Generate a new website dir
@@ -27,91 +25,75 @@ const sitePath = confs.alias.website;
  * @date 2020-09-22
  * @param {json} newComps new component list
  */
-function genDocs() {
-    const siteDocPath = path.resolve(sitePath, 'webroot');
-    exec(`cd ${siteDocPath} && rm -rf ./* && npm link vue-press@next`, async () => {
-        // copy .vuepress config
-        const err = await mvdir(path.resolve(sitePath, '.vuepress'),
-            path.resolve(siteDocPath, '.vuepress'), {copy: true});
-        // copy all docs
-        err = err && await mvdir(docsPath, siteDocPath, {copy: true});
-        err = err && await mvdir(path.resolve(docsPath, 'zh'), siteDocPath, {copy: true});
-        !err ? console.log('Updated website dir.') : console.error(err);
+async function genWebsite() {
+    await del([siteDocPath + '**', '!/node_modules/**', '!/node_modules/']);
+    // copy .vuepress config
+    await mvdir(path.resolve(sitePath, '.vuepress'), path.resolve(siteDocPath, '.vuepress'), {
+        overwrite: true,
+        copy: true
     });
+    await mvdir(path.resolve(sitePath, 'package.json'), path.resolve(siteDocPath, 'package.json'), {
+        overwrite: true,
+        copy: true
+    });
+    // copy all docs
+    await mvdir(docsPath, siteDocPath, {
+        copy: true
+    });
+    await del([path.resolve(siteDocPath, 'zh')]);
+    await mvdir(path.resolve(docsPath, 'zh'), siteDocPath, {
+        copy: true
+    });
+    console.log('Updated website dir.');
 }
 
-genDocs();
-
-
 /**
- * Auto generate doc&nav
- * When components changed,
- * 1. auto generate new components.json
- * 2. auto generate new doc's navigation list
- * 3. auto copy or delete new doc.md into documents dir
+ * Auto generate websiteRoot when dos changed,
  *
  * @date 2020-09-22
- * @param {Function} cb when generated, this function will be execute
- * @return {Object} The watcher of component dir
+ * @return {Object} The docs dir
  */
-function genNavListAndWatch(cb) {
-    const watcher = genCompListAndWatch(changed => {
-        const {
-            event,
-            filename,
-            oldComps
-        } = changed;
-        const oldComponents = Object.keys(oldComps || componentsJson);
-        const docPath = path.resolve(docsPath, 'docs/components');
-
-        // when first gen components.json
-        if (event === 'init') {
-            genNavList(oldComps);
-            genDocs(oldComps);
+function genWebsiteAndWatch() {
+    genWebsite();
+    watch.watchTree(docsPath, function(f, curr, prev) {
+        // If this is init, do nothing.
+        if (typeof f === 'object' && prev === null && curr === null) {
+            return;
         }
-
-        // when delete a component dir
-        if (event === 'rename'
-            && oldComponents.indexOf(filename) >= 0
-            && !fs.existsSync(path.resolve(componentsPath, filename))) {
-            const file = path.resolve(docPath, `${filename}.md`);
-            if (fs.existsSync(file)) {
-                fs.unlinkSync(file);
-                console.log(`Deleted ${changed.filename}.md`);
-            }
+        // Change ~/HooperUI/docs/zh/guides/pr.md to /zh/guides/pr.md
+        let fileName = f.split(docsPath)[1];
+        console.log(fileName);
+        // If file comes from default locale, delete the locale flag.
+        fileName = fileName.replace(/^\/zh\//, '/');
+        console.log(fileName);
+        // File is a new file
+        if (prev === null) {
+            console.log(`Added ${fileName}, now copy...`);
+            mvdir(f, siteDocPath + fileName, {
+                copy: true
+            });
         }
-        // when edit any doc.md file
-        else if (event === 'change'
-            && /.*\/(.*)\.md$/.test(filename)
-            && oldComponents.indexOf(RegExp.$1) >= 0) {
-            const file = path.resolve(componentsPath, RegExp.$1, `docs/${RegExp.$1}.md`);
-            // console.log('debug:', event, filename, /.*\/(.*)\.md$/.test(filename),
-            //     RegExp.$1, oldComponents.indexOf(RegExp.$1) >= 0,
-            //     file, fs.existsSync(file), path.resolve(docPath, `${RegExp.$1}.md`));
-            if (fs.existsSync(file)) {
-                fs.copyFileSync(file, path.resolve(docPath, `${RegExp.$1}.md`));
-                console.log(`Changed ${filename}`);
-            }
+        // File was removed
+        else if (curr.nlink === 0) {
+            console.log(`Removed ${fileName}, now delete...`);
+            mvdir(path.resolve(siteDocPath, fileName), siteDocPath + 'zh', {
+                overwrite: true
+            });
         }
-        // when you add a new component directory.
-        // this is a very rare situation, and you may going to edit this doc.md right away.
-        // then it will emit change event, so ignore this below.
-        // else if (event === 'rename'
-        //     && oldComponents.indexOf(filename) >= 0
-        //     && newComponents.indexOf(filename) < 0) {
-        //     let file = path.resolve(componentsPath, filename, `${filename}.md`);
-        //     if (fs.existsSync(file)) {
-        //         fs.copyFileSync(file, path.resolve(docPath, `${filename}.md`));
-        //         console.log(`Added a new ${filename}.md`);
-        //     }
-        //     genNavList(newComps);
-        // }
-        cb && cb(changed);
+        // File was changed
+        else {
+            console.log(`Changed ${fileName}, now copy...`);
+            // console.log(f, siteDocPath, path.resolve(siteDocPath, fileName));
+            mvdir(f, siteDocPath + fileName, {
+                copy: true,
+                overwrite: true
+            });
+        }
     });
-    return watcher;
+    return docsPath;
 }
 
 module.exports = {
-    genDocs,
-    genNavListAndWatch
+    genWebsite,
+    genWebsiteAndWatch
 };

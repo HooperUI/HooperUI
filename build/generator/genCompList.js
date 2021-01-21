@@ -7,6 +7,8 @@
 const fs = require('fs-extra');
 const path = require('path');
 const confs = require('../../conf');
+const watch = require('watch');
+
 const componentsJsonPath = path.resolve(confs.alias.root, 'components.json');
 const componentsPath = confs.alias.components;
 
@@ -52,57 +54,41 @@ function genCompList() {
 
 
 /**
- * Watch all components dirs, when changes occured, auto generate.
- * !Notice do NOT use this on Windows system
+ * Watch all components dirs, when changes occurred, auto generate.
  * On Windows, no events will be emitted if the watched directory is moved or renamed.
  * An EPERM error is reported when the watched directory is deleted.
  *
  * @date 2020-09-22
- * @param {Function} cb When change occured, this will be executed
- * @return {Object} The watcher of component dir
+ * @param {Function} cb When change occurred, this will be executed
+ * @return {Object} The component dir
  */
-function genCompListAndWatch(cb) {
-    let oldComps = genCompList();
+function genCompListAndWatch() {
+    genCompList();
     console.log('I\'m now watching your changes on components...');
-    const watcher = fs.watch(componentsPath, {
-        // force to watch these files even they were be watching
-        recursive: true
-    }, function(event, filename) {
-        if (event === 'rename' && filename) {
-            // when delete a component dir
-            if (!fs.existsSync(path.resolve(componentsPath, filename))
-                // or you add a new component dir
-                || Object.keys(oldComps).indexOf(filename) === -1) {
-                const newComps = genCompList();
-                cb && cb({
-                    event,
-                    filename,
-                    newComps,
-                    oldComps,
-                    watcher
-                });
-                oldComps = newComps;
-            }
+    // This is for throttle
+    let throttleFlag = false;
+    watch.watchTree(componentsPath, {
+        interval: 1
+    }, function(f, curr, prev) {
+        // If these changes were came from some exact files(not dir) or this executed is init, do nothing.
+        if (throttleFlag || typeof f === 'object' && prev === null && curr === null || f.match(/\.\S+$/)) {
+            return;
         }
-        // when edit any doc.md file
-        else if (event === 'change' && filename) {
-            cb && cb({
-                event,
-                filename,
-                oldComps,
-                watcher
-            });
-        }
-    });
-    cb && cb({
-        event: 'init',
-        filename: 'none',
-        oldComps,
-        watcher
-    });
-    return watcher;
-}
 
+        // Start throttle
+        throttleFlag = true;
+        setTimeout(() => {
+            throttleFlag = false;
+        }, 500);
+
+        // New dir or Deleted any dir
+        if (prev === null || curr.nlink === 0) {
+            console.log(`Changed ${f.split(confs.alias.root)[1]}, now regenerate components...`);
+            genCompList();
+        }
+    });
+    return componentsPath;
+}
 
 module.exports = {
     genCompList,

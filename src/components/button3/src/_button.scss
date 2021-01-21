@@ -1,0 +1,56 @@
+@import 'styles/vars.scss';
+
+@mixin genColorfulButton($compName, $colorName, $colorHex) {
+    .#{$compName}-#{$colorName} {
+        border: none;
+        color: $color-white;
+        padding: 14px 22px;
+        background-color: $colorHex;
+        box-shadow: rgba(darken($colorHex, 8%), .8) 0 2px 10px;
+
+        &:hover {
+            background-color: lighten($colorHex, 10%);
+        }
+
+        &:active {
+            background-color: darken($colorHex, 3%);
+        }
+    }
+    .#{$compName}.#{$compName}-#{$colorName}[disabled] {
+        color: $color-white;
+        background: lighten($colorHex, 30%);
+
+        &:hover,
+        &:active {
+            background-color: lighten($colorHex, 30%);
+        }
+    }
+}
+
+@mixin genShallowButton($compName, $colorName, $colorHex) {
+    // generate shalow & dashed btn
+    // they should have rgba background & colorful border
+    .#{$compName}-#{$colorName}.#{$compName}-shallow,
+    .#{$compName}-#{$colorName}.#{$compName}-dashed {
+        border: $border-width-base solid #{$colorHex};
+        padding: 14px - $border-width-base 22px - $border-width-base;
+        color: $colorHex;
+        background-color: rgba($colorHex, .1);
+        box-shadow: rgba($colorHex, .3) 0 2px 10px;
+
+        &:hover {
+            background-color: rgba($colorHex, .35);
+        }
+
+        &:active {
+            background-color: rgba($colorHex, .05);
+        }
+    }
+    // generate disabled colorful shalow & dashed btn
+    .#{$compName}-#{$colorName}.#{$compName}-shallow[disabled],
+    .#{$compName}-#{$colorName}.#{$compName}-dashed[disabled] {
+        color: $color-white;
+        background: lighten($colorHex, 30%);
+        border-color: lighten($colorHex, 15%);
+    }
+}

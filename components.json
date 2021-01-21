@@ -1,3 +1,4 @@
 {
-    "button": "src/components/button/index.ts"
+    "button": "src/components/button/index.ts",
+    "button3": "src/components/button3/index.ts"
 }

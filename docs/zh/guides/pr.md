@@ -4,32 +4,24 @@
 
 * [x] 技术栈 Vue3.0、Sass、TS、Pug
 * [x] 自动化和工程化 webpack 和 Mocha、Karma、CRPress
-* [x] 文档编写 mkdoc
+* [x] 文档编写 vuePress
 
 如果你上方技能还不太掌握，建议你先去学习一下相关技能，毕竟磨刀不误砍柴工呀！
 
 ## 开发流程
 
-首先要介绍的是 HooperUI 的整体设计思路，方便你快速的运行起来。[pr](./index.md)
+首先要介绍的是 HooperUI 的整体设计思路，方便你快速的运行起来。
 
 ### 安装依赖
 
 HooperUI 里面有非常多的依赖项，有的是全局的，有的是 npm modules。在开始之前，你需要在全局安装下面的插件：
 
 * [x] 基础依赖 Node.js(Version mast >= 12)
-* [x] 文档依赖 Python(Version must >= 3)
-* [x] 文档编写组件 mkdocs & mkdocs-material
+* [x] 文档依赖 vuePress@next(Version must >= 3)
 
-你可以参照他们的官网进行安装，这里有一份 mkdocs 的安装指引：
+安装 node 请自行到 nodejs 官网下载并安装对应版本。
 
-``` bash
-python -m pip install mkdocs
-python -m mkdocs
-# you need python >= 3.0
-python -m pip install mkdocs-material
-```
-
-之后你需要安装npm 相关依赖：
+安装npm 相关依赖：
 
 ```bash
 npm install

@@ -15,6 +15,7 @@ dist/.*\-(.){6}\.(js|css)
 dist/.*\.html
 doc/dist
 docs/dist
+website/webroot/**/*
 tests/coverage
 node_modules
 .temp
