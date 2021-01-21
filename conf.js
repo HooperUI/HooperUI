@@ -13,6 +13,7 @@ const globalPath = {
     styles: './src/styles',
     demo: './demo',
     docs: './docs',
+    website: './website',
     root: './'
 };
 

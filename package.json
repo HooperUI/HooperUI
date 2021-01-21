@@ -64,6 +64,7 @@
     "karma-webpack": "^4.0.2",
     "mini-css-extract-plugin": "^0.11.2",
     "mocha": "^8.2.1",
+    "mvdir": "^1.0.21",
     "progress-bar-webpack-plugin": "^2.1.0",
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
