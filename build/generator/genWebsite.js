@@ -26,7 +26,7 @@ const siteDocPath = path.resolve(sitePath, 'webroot');
  * @param {json} newComps new component list
  */
 async function genWebsite() {
-    await del([siteDocPath + '**', '!/node_modules/**', '!/node_modules/']);
+    await del([siteDocPath + '**']);
     // copy .vuepress config
     await mvdir(path.resolve(sitePath, '.vuepress'), path.resolve(siteDocPath, '.vuepress'), {
         overwrite: true,

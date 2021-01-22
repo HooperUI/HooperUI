@@ -15,6 +15,10 @@ const {genWebsiteAndWatch} = require('./generator/genWebsite');
 const {genCompListAndWatch} = require('./generator/genCompList');
 const {showLog} = require('./utils');
 
+const confs = require('../conf');
+const sitePath = confs.alias.website;
+const siteDocPath = path.resolve(sitePath, 'webroot');
+
 // Set process title
 process.title = 'HooperUI DEV Process';
 
@@ -42,8 +46,8 @@ const compWatchRoot = genCompListAndWatch();
 
 // Start vuePress serve
 spawn('kill', ['-9', '`lsof -i:8080 -t`']);
-const vuePressServer = spawn('npx', ['vuepress', 'dev'], {
-    cwd: path.resolve(__dirname, '../website/webroot')
+const vuePressServer = spawn('vuepress', ['dev', 'webroot'], {
+    cwd: path.resolve(__dirname, '../website')
 });
 vuePressServer.stderr.on('data', data => {
     console.log(data.toString());
@@ -57,7 +61,6 @@ vuePressServer.on('close', () => {
 });
 
 process.on('SIGINT', function() {
-    docGen.close();
     spawn('kill', [devServer.pid]);
     watch.unwatchTree(websiteWatchRoot);
     watch.unwatchTree(compWatchRoot);
