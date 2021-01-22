@@ -6,6 +6,7 @@
   "typings": "typings/index.d.ts",
   "sideEffects": false,
   "scripts": {
+    "postinstall": "cd website && npm install",
     "test": "npx jest --config tests/unit/jest.config.js",
     "test:coverage": "npx jest --config tests/unit/jest.config.js --coverage",
     "test:unit": "npx jest --config tests/unit/jest.config.js --watch",

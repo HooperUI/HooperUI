@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "docs:dev": "npx vuepress dev",
-        "docs:build": "npx vuepress build"
+        "docs:dev": "npx vuepress dev webroot",
+        "docs:build": "npx vuepress build webroot"
     },
     "keywords": [],
     "author": "",

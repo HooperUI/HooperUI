@@ -30,10 +30,10 @@ const devServer = spawn('webpack-dev-server', ['--config', 'webpack.dev.js', '--
 });
 devServer.stdout.on('data', data => {
     const result = data.toString().match(/\:\s(.*(\n|\r))/);
-    result && showLog(`devServer ${result[1]}`, 'build');
+    result && showLog(`devServer: ${result[1]}`, 'build');
 });
 devServer.stderr.on('data', data => {
-    showLog(`devServerError ${data.toString()}`, 'error');
+    showLog(`devServerError: ${data.toString()}`, 'error');
 });
 devServer.on('close', () => {
     showLog('devServer exited\n');
@@ -46,15 +46,12 @@ const compWatchRoot = genCompListAndWatch();
 
 // Start vuePress serve
 spawn('kill', ['-9', '`lsof -i:8080 -t`']);
-const vuePressServer = spawn('vuepress', ['dev', 'webroot'], {
+const vuePressServer = spawn('npx', ['vuepress', 'dev', 'webroot'], {
     cwd: path.resolve(__dirname, '../website')
 });
 vuePressServer.stderr.on('data', data => {
-    console.log(data.toString());
-    // const result = data.toString().match(/(((INFO|WORNING)\s+\-.*\n)|(\[Errno.*\n))/);
-    // if (result && !/Browser\sConnected:/.test(result)) {
-    //     result && showLog(`vuePressServer ${result[1]}`, result[1].match(/(\[Errno.*\n)/) ? 'error' : 'info');
-    // }
+    const result = data.toString().match(/https?\:\/\/(.*)\//);
+    result && showLog(`vuePressServer: Website now served on ${result[0]}\n`, 'build');
 });
 vuePressServer.on('close', () => {
     showLog('vuePressServer exited\n');

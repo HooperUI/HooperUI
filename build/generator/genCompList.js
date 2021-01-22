@@ -8,6 +8,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const confs = require('../../conf');
 const watch = require('watch');
+const {showLog} = require('../utils');
 
 const componentsJsonPath = path.resolve(confs.alias.root, 'components.json');
 const componentsPath = confs.alias.components;
@@ -48,7 +49,7 @@ function genCompList() {
         .replace(/\/\/\scodeHolder(.|\n)*holderEnd\n/, tpl);
     fs.writeFileSync(path.resolve(componentsPath, 'index.ts'), tpl);
 
-    console.log(`Generated new components.json, length is ${Object.keys(compsList).length}`);
+    showLog(`Generated new components.json, length is ${Object.keys(compsList).length}\n`);
     return compsList;
 }
 
@@ -64,7 +65,7 @@ function genCompList() {
  */
 function genCompListAndWatch() {
     genCompList();
-    console.log('I\'m now watching your changes on components...');
+    showLog('I\'m now watching your changes on components...\n');
     // This is for throttle
     let throttleFlag = false;
     watch.watchTree(componentsPath, {
@@ -83,7 +84,7 @@ function genCompListAndWatch() {
 
         // New dir or Deleted any dir
         if (prev === null || curr.nlink === 0) {
-            console.log(`Changed ${f.split(confs.alias.root)[1]}, now regenerate components...`);
+            showLog(`Changed ${f.split(confs.alias.root)[1]}, now regenerate components...\n`, 'build');
             genCompList();
         }
     });
