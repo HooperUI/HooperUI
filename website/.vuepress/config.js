@@ -4,7 +4,7 @@
  * @author: Hooper (admin@hooperui.com)
  * @copyright: HooperUI @ MIT
  */
-
+const path = require('path');
 module.exports = {
     lang: 'zh-CN',
     title: 'HooperUI - Easy and Fast',
@@ -20,7 +20,9 @@ module.exports = {
     },
     shouldPrefetch: () => true,
     debug: true,
+    templateDev: path.resolve(__dirname, './theme/layouts/dev.template.html'),
     dest: './dist',
+    port: '8000',
     markdown: {
         code: {
             lineNumbers: false
@@ -41,6 +43,9 @@ module.exports = {
                 navbar: [{
                     text: '指南',
                     link: '/guides/'
+                }, {
+                    text: '组件',
+                    link: '/components/'
                 }],
                 sidebar: {
                     '/': [ /* ... */ ],

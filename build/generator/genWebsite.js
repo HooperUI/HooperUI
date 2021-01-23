@@ -93,6 +93,7 @@ function genWebsiteAndWatch() {
             return;
         }
         else {
+            showLog('Changed vuepress config, regenerate website. You need to RELOAD YOURSELF.\n');
             mvdir(path.resolve(sitePath, '.vuepress'), path.resolve(siteDocPath, '.vuepress'), {
                 overwrite: true,
                 copy: true

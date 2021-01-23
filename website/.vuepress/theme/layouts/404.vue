@@ -1,5 +1,5 @@
 <template>
     <div>
-        404
+        404, We can't find the page you're looking for.
     </div>
 </template>

@@ -10,12 +10,12 @@ weight: 1
 ## 基础用法
 
 <div id="app">
-    <h-button>普通按钮</h-button>
+    <!-- <h-button>普通按钮</h-button>
     <h-button type="primary">主题色按钮</h-button>
     <h-button type="success">成功按钮</h-button>
     <h-button type="danger">危险按钮</h-button>
     <h-button type="warning">警告按钮</h-button>
-    <h-button type="info">信息按钮</h-button>
+    <h-button type="info">信息按钮</h-button> -->
 </div>
 <!-- <script>
 Demo(function () {
@@ -27,21 +27,21 @@ Demo(function () {
 </script> -->
 
 === "示例代码"
-    ```html
-    <div id="app">
-        <h-button>普通按钮</h-button>
-        <h-button type="primary">主题色按钮</h-button>
-        <h-button type="success">成功按钮</h-button>
-        <h-button type="danger">危险按钮</h-button>
-        <h-button type="warning">警告按钮</h-button> 
-        <h-button type="info">信息按钮</h-button> 
-    </div>
-    ```
-    ```js
-    const app = Vue.createApp();
-    app.use(HooperUI);
-    app.mount('#app');
-    ```
+```html
+<div id="app">
+    <!-- <h-button>普通按钮</h-button>
+    <h-button type="primary">主题色按钮</h-button>
+    <h-button type="success">成功按钮</h-button>
+    <h-button type="danger">危险按钮</h-button>
+    <h-button type="warning">警告按钮</h-button> 
+    <h-button type="info">信息按钮</h-button>  -->
+</div>
+```
+```js
+const app = Vue.createApp();
+app.use(HooperUI);
+app.mount('#app');
+```
 
 ## 风格按钮
 
@@ -56,11 +56,11 @@ Demo(function () {
 | dashed | 虚线按钮 | `<h-button dashed>我有虚线描边</h-button>` |
 
 <div id="app2">
-    <h-button shadow>我有阴影</h-button>
+    <!-- <h-button shadow>我有阴影</h-button>
     <h-button type="primary" shallow>我是半透明按钮</h-button>
     <h-button type="success" round>我圆了</h-button>
     <h-button type="danger" square>我方了</h-button>
-    <h-button type="warning" dashed>我有虚线描边</h-button>
+    <h-button type="warning" dashed>我有虚线描边</h-button> -->
 </div>
 <!-- <script>
 Demo(function () {
@@ -71,41 +71,51 @@ Demo(function () {
 </script> -->
 
 === "示例代码"
-    ```html
-    <h-button shadow>我有阴影</h-button>
-    <h-button type="primary" shallow>我是半透明按钮</h-button>
-    <h-button type="success" round>我圆了</h-button>
-    <h-button type="danger" square>我方了</h-button>
-    <h-button type="warning" dashed>我有虚线描边</h-button>
-    ```
+```html
+<h-button shadow>我有阴影</h-button>
+<h-button type="primary" shallow>我是半透明按钮</h-button>
+<h-button type="success" round>我圆了</h-button>
+<h-button type="danger" square>我方了</h-button>
+<h-button type="warning" dashed>我有虚线描边</h-button>
+```
 
 <div id="app3">
+</div>
+
+<script>
+import {createApp} from 'vue'
+const app = createApp({});
+app.use(window.HooperUI);
+app.mount('#app');
+// console.log('a');
+const app2 = createApp({
+    data() {
+        return {
+            colors: {
+                normal: '普通按钮',
+                primary: '主题色按钮',
+                success: '成功按钮',
+                danger: '危险按钮',
+                warning: '警告按钮',
+                info: '信息按钮',
+            }
+        };
+    }
+});
+app2.use(window.HooperUI);
+app2.mount('#app3');
+const app3 = createApp({
+    template: `<div>
     <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" shadow>{{name}}</h-button></div>
     <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" shallow>{{name}}</h-button></div>
     <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" round>{{name}}</h-button></div>
     <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" dashed>{{name}}</h-button></div>
     <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" square>{{name}}</h-button></div>
-</div>
-<!-- <script>
-Demo(function () {
-    const app = Vue.createApp({
-        data() {
-            return {
-                colors: {
-                    normal: '普通按钮',
-                    primary: '主题色按钮',
-                    success: '成功按钮',
-                    danger: '危险按钮',
-                    warning: '警告按钮',
-                    info: '信息按钮',
-                }
-            };
-        }
-    });
-    app.use(HooperUI);
-    app.mount('#app3');
+    </div>`
 });
-</script> -->
+app3.use(window.HooperUI);
+app3.mount('#app2');
+</script>
 
 !!! danger "使用注意"
     `type=normal` 类型的按钮，在设置 `shallow` 和 `dashed` 之后，不具备半透明效果，这在黑色主题的网站上表现较为特殊，请注意使用。
