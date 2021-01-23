@@ -87,7 +87,19 @@ function genWebsiteAndWatch() {
             });
         }
     });
-    return docsPath;
+    watch.watchTree(path.resolve(sitePath, '.vuepress'), function(f, curr, prev) {
+        // If this is init, do nothing.
+        if (typeof f === 'object' && prev === null && curr === null) {
+            return;
+        }
+        else {
+            mvdir(path.resolve(sitePath, '.vuepress'), path.resolve(siteDocPath, '.vuepress'), {
+                overwrite: true,
+                copy: true
+            });
+        }
+    });
+    return [docsPath, path.resolve(sitePath, '.vuepress')];
 }
 
 module.exports = {

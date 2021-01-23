@@ -50,8 +50,11 @@ const vuePressServer = spawn('npx', ['vuepress', 'dev', 'webroot'], {
     cwd: path.resolve(__dirname, '../website')
 });
 vuePressServer.stderr.on('data', data => {
+    // Only export the useful messages
     const result = data.toString().match(/https?\:\/\/(.*)\//);
     result && showLog(`vuePressServer: Website now served on ${result[0]}\n`, 'build');
+    const error = data.toString().match(/(ERROR\sin(.*))|(Error\:(.*))/);
+    error && showLog(`vuePressServerError: ${error[0]}\n`, 'error');
 });
 vuePressServer.on('close', () => {
     showLog('vuePressServer exited\n');
@@ -59,7 +62,8 @@ vuePressServer.on('close', () => {
 
 process.on('SIGINT', function() {
     spawn('kill', [devServer.pid]);
-    watch.unwatchTree(websiteWatchRoot);
+    watch.unwatchTree(websiteWatchRoot[0]);
+    watch.unwatchTree(websiteWatchRoot[1]);
     watch.unwatchTree(compWatchRoot);
     console.log(''); // This is must.
     showLog('HooperUI DEV serve exited.\n');

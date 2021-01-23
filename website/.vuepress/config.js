@@ -26,6 +26,11 @@ module.exports = {
             lineNumbers: false
         }
     },
+    plugins: [
+        // ['@vuepress/search', {
+        //     searchMaxSuggestions: 10
+        // }]
+    ],
     theme: require('path').resolve(__dirname, './theme'),
     themeConfig: {
         locales: {

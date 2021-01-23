@@ -10,12 +10,15 @@
         .theme-changer
             | 默认主题
         .search-wrapper
+            //- SearchBox
             | Search
 </template>
 <script>
 import {useRouteLocale, useThemeLocaleData} from '@vuepress/client';
 import {computed} from 'vue';
+// import SearchBox from '@SearchBox';
 export default {
+    // components: {SearchBox},
     setup(props, context) {
         const langPath = useRouteLocale();
         const localeData = useThemeLocaleData();
