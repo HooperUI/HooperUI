@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Hooper93/HooperUI.git"
+    "url": "git+https://github.com/HooperUI/HooperUI.git"
   },
   "keywords": [
     "HooperUI"
@@ -26,9 +26,9 @@
   "author": "Hooper",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Hooper93/HooperUI/issues"
+    "url": "https://github.com/HooperUI/HooperUI/issues"
   },
-  "homepage": "https://github.com/Hooper93/HooperUI#readme",
+  "homepage": "https://github.com/HooperUI/HooperUI#readme",
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
@@ -67,6 +67,7 @@
     "mini-css-extract-plugin": "^0.11.2",
     "mocha": "^8.2.1",
     "mvdir": "^1.0.21",
+    "postcss": "^8.2.4",
     "progress-bar-webpack-plugin": "^2.1.0",
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",

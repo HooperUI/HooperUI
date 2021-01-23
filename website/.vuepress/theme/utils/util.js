@@ -6,8 +6,9 @@
  */
 
 export const getSidebar = async function({lang, pages, location: local}) {
-    // Find the path of this current page
-    // If this regExp not match, that means current page is the home page. Home page not need to generat sidebar
+    // Find paths of the current page
+    // If it doesn't match the regExp, it must be the home page.
+    // The home page doesn't need to generate the sidebar
     const pathMatch = local.path.match(new RegExp(`^${lang}[a-z]+\/`));
     if (pathMatch) {
         const pathReg = new RegExp('^' + pathMatch[0].replace(/\//g, '\/'));

@@ -55,12 +55,12 @@ function genCompList() {
 
 
 /**
- * Watch all components dirs, when changes occurred, auto generate.
+ * Watch all components dirs, when the changes occurred, auto-generate.
  * On Windows, no events will be emitted if the watched directory is moved or renamed.
  * An EPERM error is reported when the watched directory is deleted.
  *
  * @date 2020-09-22
- * @param {Function} cb When change occurred, this will be executed
+ * @param {Function} cb When the change occurred, this will be executed
  * @return {Object} The component dir
  */
 function genCompListAndWatch() {
@@ -71,7 +71,7 @@ function genCompListAndWatch() {
     watch.watchTree(componentsPath, {
         interval: 1
     }, function(f, curr, prev) {
-        // If these changes were came from some exact files(not dir) or this executed is init, do nothing.
+        // If these changes came from some exact files(not dir) or this executed is init, do nothing.
         if (throttleFlag || typeof f === 'object' && prev === null && curr === null || f.match(/\.\S+$/)) {
             return;
         }

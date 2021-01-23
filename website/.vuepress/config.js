@@ -8,7 +8,6 @@
 module.exports = {
     lang: 'zh-CN',
     title: 'HooperUI - Easy and Fast',
-    logo: 'https://vuejs.org/images/logo.png',
     locales: {
         '/': {
             lang: 'zh-CN',
