@@ -16,6 +16,6 @@ console.log('Starting webpack build...');
 // compiler.run((err, stats) => {
 //     console.log('HooperUI was builded.');
 // });
-spawn('webpack', ['--config', 'webpack.prod.js', '--client-log-level', 'silent'], {
+spawn('webpack', ['--config', 'webpack.prod.js', '--client-log-level'], {
     cwd: __dirname
 });

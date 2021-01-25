@@ -56,11 +56,11 @@ app.mount('#app');
 | dashed | 虚线按钮 | `<h-button dashed>我有虚线描边</h-button>` |
 
 <div id="app2">
-    <!-- <h-button shadow>我有阴影</h-button>
+    <h-button shadow>我有阴影</h-button>
     <h-button type="primary" shallow>我是半透明按钮</h-button>
     <h-button type="success" round>我圆了</h-button>
     <h-button type="danger" square>我方了</h-button>
-    <h-button type="warning" dashed>我有虚线描边</h-button> -->
+    <h-button type="warning" dashed>我有虚线描边</h-button>
 </div>
 <!-- <script>
 Demo(function () {
@@ -83,38 +83,39 @@ Demo(function () {
 </div>
 
 <script>
-import {createApp} from 'vue'
-const app = createApp({});
-app.use(window.HooperUI);
-app.mount('#app');
-// console.log('a');
-const app2 = createApp({
-    data() {
-        return {
-            colors: {
-                normal: '普通按钮',
-                primary: '主题色按钮',
-                success: '成功按钮',
-                danger: '危险按钮',
-                warning: '警告按钮',
-                info: '信息按钮',
-            }
-        };
-    }
-});
-app2.use(window.HooperUI);
-app2.mount('#app3');
-const app3 = createApp({
-    template: `<div>
-    <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" shadow>{{name}}</h-button></div>
-    <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" shallow>{{name}}</h-button></div>
-    <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" round>{{name}}</h-button></div>
-    <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" dashed>{{name}}</h-button></div>
-    <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" square>{{name}}</h-button></div>
-    </div>`
-});
-app3.use(window.HooperUI);
-app3.mount('#app2');
+// import {createApp} from 'vue'
+// const app = createApp({});
+// app.use(window.HooperUI);
+// app.mount('#app');
+// // console.log('a');
+// const app2 = createApp({
+//     data() {
+//         return {
+//             colors: {
+//                 normal: '普通按钮',
+//                 primary: '主题色按钮',
+//                 success: '成功按钮',
+//                 danger: '危险按钮',
+//                 warning: '警告按钮',
+//                 info: '信息按钮',
+//             }
+//         };
+//     }
+// });
+// app2.use(window.HooperUI);
+// app2.mount('#app3');
+// const app3 = createApp({
+//     template: `<div>
+//     <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" shadow>{{name}}</h-button></div>
+//     <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" shallow>{{name}}</h-button></div>
+//     <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" round>{{name}}</h-button></div>
+//     <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" dashed>{{name}}</h-button></div>
+//     <div><h-button v-for="(name, color) in colors" :type="color" @click="plus" square>{{name}}</h-button></div>
+//     </div>`
+// });
+// app3.use(window.HooperUI);
+// app3.mount('#app2');
+// console.log(this.use)
 </script>
 
 !!! danger "使用注意"

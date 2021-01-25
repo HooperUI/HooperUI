@@ -47,7 +47,7 @@ export default defineComponent({
     },
     setup() {
     },
-    methods: {
+    onMounted() {
     }
 });
 </script>

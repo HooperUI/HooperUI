@@ -15,6 +15,7 @@ const {
     VueLoaderPlugin
 } = require('vue-loader');
 const confs = require('../conf');
+const version = require('../package.json').version;
 
 module.exports = {
     mode: 'production',
@@ -24,7 +25,7 @@ module.exports = {
     output: {
         path: path.resolve(confs.alias.root, 'dist'),
         publicPath: '/dist/',
-        filename: 'hooperui-[chunkhash:6].js',
+        filename: `hooperui-${version}.js`,
         libraryTarget: 'umd',
         libraryExport: 'default',
         library: 'HooperUI',
@@ -63,7 +64,7 @@ module.exports = {
             use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader', {
                 loader: 'sass-resources-loader',
                 options: {
-                    resources: path.resolve(confs.alias.components, '_styles/vars.scss')
+                    resources: path.resolve(confs.alias.styles, 'vars.scss')
                 }
             }]
         }, {
@@ -80,7 +81,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new ProgressBarPlugin(),
         new MiniCssExtractPlugin({
-            filename: 'hooperui-[chunkhash:6].css'
+            filename: `hooperui-${version}.css`
         })
     ]
 };

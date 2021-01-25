@@ -17,6 +17,7 @@ doc/dist
 docs/dist
 website/webroot/**/*
 website/dist
+website/dist/**/*
 tests/coverage
 node_modules
 .temp

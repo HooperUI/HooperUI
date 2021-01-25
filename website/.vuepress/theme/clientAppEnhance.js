@@ -4,13 +4,10 @@
  * @author: Hooper (admin@hooperui.com)
  * @copyright: HooperUI @ MIT
  */
-
-export default ({
-    Vue, // Vue constructor
-    options, // Some options on root app
-    router, // Router
-    siteData, // Origin datas
-    isServer // Is ssr OR client
-}) => {
+import HooperUI from 'hooperui'
+export default ({app}) => {
     // ...somthing else
+    app.use(HooperUI);
+    // alert(Object.keys(window.HooperUI))
+    // console.log(app);
 }

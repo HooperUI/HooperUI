@@ -4,7 +4,10 @@
   "description": "A new HooperUI UIkit",
   "main": "index.js",
   "typings": "typings/index.d.ts",
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
   "scripts": {
     "postinstall": "cd website && npm install",
     "test": "npx jest --config tests/unit/jest.config.js",
@@ -81,7 +84,7 @@
     "ts-jest": "^26.4.4",
     "ts-loader": "^8.0.4",
     "typescript": "^4.0.3",
-    "vue": "^3.0.2",
+    "vue": "^3.0.5",
     "vue-eslint-parser": "^6.0.0-beta.0",
     "vue-jest": "^5.0.0-alpha.5",
     "vue-loader": "^16.0.0-beta.8",

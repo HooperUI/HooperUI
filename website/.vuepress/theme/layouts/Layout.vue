@@ -9,7 +9,7 @@
     Footer.footer
 </template>
 <style lang="scss" src="../styles/index.scss"></style>
-<script>
+<script lang="ts">
 import Header from '../components/header.vue';
 import SideBar from '../components/sidebar.vue';
 import Catalogue from '../components/catalogue';
